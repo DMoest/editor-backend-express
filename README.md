@@ -17,7 +17,12 @@ If you are interested more in the course material please check out [the course w
 npm install
 ```
 
-### Project startup
+### Build project
+```
+npm run build
+```
+
+### Start project
 ```
 npm run start
 ```

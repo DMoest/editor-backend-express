@@ -9,13 +9,11 @@ import { logger } from './middleware/logger'
 import { catchAll, errorHandler } from './middleware/errorHandler'
 
 
-
 /**
  * Export Application Object.
  * @type {Express}
  */
 export const app = express()
-
 
 
 /**
@@ -25,20 +23,30 @@ export const app = express()
 const port = 1337
 
 
+/**
+ * Settings.
+ */
+app.disable('x-powered-by')
+
+
+/**
+ * Import Route Modules
+ */
+const indexRoutes = require('./routes/index');
+const userRoutes = require('./routes/user');
+
 
 /**
  * Middlewares used by all routes.
  */
 app.use(cors())
 
-app.disable('x-powered-by')
-
+/**
+ * Don't show the log when it is test.
+ * Use morgan to log at command line.
+ * 'combined' outputs the Apache style LOGs.
+ */
 if (process.env.NODE_ENV !== 'test') {
-    /**
-     * Don't show the log when it is test.
-     * Use morgan to log at command line.
-     * 'combined' outputs the Apache style LOGs.
-     */
     app.use(morgan('combined'));
 }
 
@@ -48,45 +56,11 @@ app.use(urlencoded({ extended: true }))
 logger()
 
 
-
 /**
- * Route Controllers.
+ * Routes Registration.
  */
-app.get('/', (req, res) => {
-    res.send({ message: 'Hello!' })
-})
-
-app.post('/', (req, res) => {
-    console.log('req.body: ', req.body)
-    res.send({ message: 'OK' })
-})
-
-app.get("/user", (req, res) => {
-    res.json({
-        data: {
-            msg: "Got a GET request, sending back default 200"
-        }
-    });
-});
-
-app.post("/user", (req, res) => {
-    res.status(201).json({
-        data: {
-            msg: "Got a POST request, sending back 201 Created"
-        }
-    });
-});
-
-app.put("/user", (req, res) => {
-    // PUT requests should return 204 No Content
-    res.status(204).send();
-});
-
-app.delete("/user", (req, res) => {
-    // DELETE requests should return 204 No Content
-    res.status(204).send();
-});
-
+app.use('/', indexRoutes);
+app.use('/user', userRoutes);
 
 
 /**
@@ -94,7 +68,6 @@ app.delete("/user", (req, res) => {
  */
 catchAll()
 errorHandler()
-
 
 
 /**

@@ -36,18 +36,30 @@ const app = (0, _express.default)();
 exports.app = app;
 const port = 1337;
 /**
+ * Settings.
+ */
+
+app.disable('x-powered-by');
+/**
+ * Import Route Modules
+ */
+
+const indexRoutes = require('./routes/index');
+
+const userRoutes = require('./routes/user');
+/**
  * Middlewares used by all routes.
  */
 
+
 app.use((0, _cors.default)());
-app.disable('x-powered-by');
+/**
+ * Don't show the log when it is test.
+ * Use morgan to log at command line.
+ * 'combined' outputs the Apache style LOGs.
+ */
 
 if (process.env.NODE_ENV !== 'test') {
-  /**
-   * Don't show the log when it is test.
-   * Use morgan to log at command line.
-   * 'combined' outputs the Apache style LOGs.
-   */
   app.use((0, _morgan.default)('combined'));
 }
 
@@ -58,42 +70,11 @@ app.use((0, _bodyParser.urlencoded)({
 }));
 (0, _logger.logger)();
 /**
- * Route Controllers.
+ * Routes Registration.
  */
 
-app.get('/', (req, res) => {
-  res.send({
-    message: 'Hello!'
-  });
-});
-app.post('/', (req, res) => {
-  console.log('req.body: ', req.body);
-  res.send({
-    message: 'OK'
-  });
-});
-app.get("/user", (req, res) => {
-  res.json({
-    data: {
-      msg: "Got a GET request, sending back default 200"
-    }
-  });
-});
-app.post("/user", (req, res) => {
-  res.status(201).json({
-    data: {
-      msg: "Got a POST request, sending back 201 Created"
-    }
-  });
-});
-app.put("/user", (req, res) => {
-  // PUT requests should return 204 No Content
-  res.status(204).send();
-});
-app.delete("/user", (req, res) => {
-  // DELETE requests should return 204 No Content
-  res.status(204).send();
-});
+app.use('/', indexRoutes);
+app.use('/user', userRoutes);
 /**
  * Error Handler
  */

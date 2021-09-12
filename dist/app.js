@@ -15,6 +15,8 @@ var _cors = _interopRequireDefault(require("cors"));
 
 var _logger = require("./middleware/logger");
 
+var _errorHandler = require("./middleware/errorHandler");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /**
@@ -92,6 +94,12 @@ app.delete("/user", (req, res) => {
   // DELETE requests should return 204 No Content
   res.status(204).send();
 });
+/**
+ * Error Handler
+ */
+
+(0, _errorHandler.catchAll)();
+(0, _errorHandler.errorHandler)();
 /**
  * Start function.
  */

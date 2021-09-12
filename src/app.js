@@ -6,6 +6,7 @@ import { json, urlencoded } from 'body-parser'
 import morgan from 'morgan'
 import cors from 'cors'
 import { logger } from './middleware/logger'
+import { catchAll, errorHandler } from './middleware/errorHandler'
 
 
 
@@ -47,6 +48,7 @@ app.use(urlencoded({ extended: true }))
 logger()
 
 
+
 /**
  * Route Controllers.
  */
@@ -84,6 +86,14 @@ app.delete("/user", (req, res) => {
     // DELETE requests should return 204 No Content
     res.status(204).send();
 });
+
+
+
+/**
+ * Error Handler
+ */
+catchAll()
+errorHandler()
 
 
 

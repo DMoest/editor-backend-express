@@ -13,6 +13,8 @@ var _morgan = _interopRequireDefault(require("morgan"));
 
 var _cors = _interopRequireDefault(require("cors"));
 
+var _logger = require("./middleware/logger");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /**
@@ -52,6 +54,7 @@ app.use(_express.default.json());
 app.use((0, _bodyParser.urlencoded)({
   extended: true
 }));
+(0, _logger.logger)();
 /**
  * Route Controllers.
  */

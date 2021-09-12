@@ -5,6 +5,7 @@ import express from 'express'
 import { json, urlencoded } from 'body-parser'
 import morgan from 'morgan'
 import cors from 'cors'
+import { logger } from './middleware/logger'
 
 
 
@@ -43,7 +44,7 @@ if (process.env.NODE_ENV !== 'test') {
 app.use(json())
 app.use(express.json());
 app.use(urlencoded({ extended: true }))
-
+logger()
 
 
 /**

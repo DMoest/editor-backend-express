@@ -8,25 +8,40 @@ const router = express.Router();
 /**
  * Route Controllers.
  */
-router.get('/', (req, res) => {
-    const data = {
-        data: {
-            msg: 'Hello World'
-        }
-    };
+router.route('/')
+    .get((req, res) => {
+        const data = {
+            data: {
+                msg: 'Hello World'
+            }
+        };
 
-    res.json(data);
-})
+        res.json(data);
+    })
+    .post((req, res) => {
+        const data = {
+            data: {
+                msg: 'OK'
+            }
+        };
 
-router.post('/', (req, res) => {
-    const data = {
-        data: {
-            msg: 'OK'
-        }
-    };
+        res.json(data);
+    })
 
-    res.json(data);
-})
+
+/**
+ * Dynamic Route
+ */
+router.route('/hello/:msg')
+    .get((req, res) => {
+        const data = {
+            data: {
+                msg: req.params.msg
+            }
+        };
+
+        res.json(data);
+    })
 
 
 /**

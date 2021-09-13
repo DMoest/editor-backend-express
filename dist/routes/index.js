@@ -13,18 +13,29 @@ const router = _express.default.Router();
  */
 
 
-router.get('/', (req, res) => {
+router.route('/').get((req, res) => {
   const data = {
     data: {
       msg: 'Hello World'
     }
   };
   res.json(data);
-});
-router.post('/', (req, res) => {
+}).post((req, res) => {
   const data = {
     data: {
       msg: 'OK'
+    }
+  };
+  res.json(data);
+});
+/**
+ * Dynamic Route
+ */
+
+router.route('/hello/:msg').get((req, res) => {
+  const data = {
+    data: {
+      msg: req.params.msg
     }
   };
   res.json(data);

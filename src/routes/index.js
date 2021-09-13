@@ -1,12 +1,12 @@
 /**
  * Import & Declare Module Dependencies.
  */
-import express from 'express'
-const router = express.Router();
+import { Router } from 'express'
+const router = Router();
 
 
 /**
- * Route Controllers.
+ * Route Handlers.
  */
 router.route('/')
     .get((req, res) => {
@@ -46,5 +46,7 @@ router.route('/hello/:msg')
 
 /**
  * Module Exports.
+ * Export default enables you to rename the module where it is imported.
+ * If using export in front of constant declaration you have to import it by correct name.
  */
-module.exports = router;
+export default router;

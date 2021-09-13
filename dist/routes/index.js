@@ -1,17 +1,19 @@
 "use strict";
 
-var _express = _interopRequireDefault(require("express"));
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var _express = require("express");
 
 /**
  * Import & Declare Module Dependencies.
  */
-const router = _express.default.Router();
+const router = (0, _express.Router)();
 /**
- * Route Controllers.
+ * Route Handlers.
  */
-
 
 router.route('/').get((req, res) => {
   const data = {
@@ -42,6 +44,9 @@ router.route('/hello/:msg').get((req, res) => {
 });
 /**
  * Module Exports.
+ * Export default enables you to rename the module where it is imported.
+ * If using export in front of constant declaration you have to import it by correct name.
  */
 
-module.exports = router;
+var _default = router;
+exports.default = _default;

@@ -46,7 +46,5 @@ router.route('/hello/:msg')
 
 /**
  * Module Exports.
- * Export default enables you to rename the module where it is imported.
- * If using export in front of constant declaration you have to import it by correct name.
  */
-export default router;
+module.exports = router;

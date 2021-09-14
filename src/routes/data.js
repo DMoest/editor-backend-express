@@ -2,71 +2,12 @@
  * Import Module Dependencies & Declare Constants.
  */
 import { Router } from 'express'
-import { MongoClient as mongo } from "mongodb";
-import { ObjectId } from "mongodb";
 import { findInCollection } from '../db/search'
 import { insertDocument } from '../db/insert'
 import { updateDocument } from '../db/update'
 
 const router = Router();
 const dsn =  process.env.DBWEBB_DSN || "mongodb://localhost:27017/mumin";
-
-
-
-// /**
-//  * Find documents in an collection by matching search criteria.
-//  *
-//  * @async
-//  *
-//  * @param {string} dsn        DSN to connect to database.
-//  * @param {string} colName    Name of collection.
-//  * @param {object} criteria   Search criteria.
-//  * @param {object} projection What to project in results.
-//  * @param {number} limit      Limit the number of documents to retrieve.
-//  *
-//  * @throws Error when database operation fails.
-//  *
-//  * @return {Promise<array>} The resultset as an array.
-//  */
-// async function findInCollection(dsn, colName, criteria, projection, limit) {
-//     const client  = await mongo.connect(dsn);
-//     const db = await client.db();
-//     const col = await db.collection(colName);
-//     const res = await col.find(criteria, projection).limit(limit).toArray();
-//
-//     await client.close();
-//
-//     return res;
-// }
-
-
-
-
-
-
-
-
-/**
- * Function for deleting a document from database.
- * @param dsn
- * @param colName
- * @param requestBody
- * @return {Promise<*>}
- */
-async function deleteDoc(dsn, colName, requestBody) {
-    const client  = await mongo.connect(dsn);
-    const db = await client.db();
-    const col = await db.collection(colName);
-    const filter = { _id: ObjectId(requestBody['_id']) };
-    const res = await col.deleteOne(filter);
-
-    await client.close();
-
-    console.log(`${ res.deletedCount } document(s) was/where deleted.`);
-
-    return res;
-}
-
 
 
 /**

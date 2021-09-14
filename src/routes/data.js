@@ -1,60 +1,45 @@
 /**
- * Import & Declare Module Dependencies.
+ * Import Module Dependencies & Declare Constants.
  */
 import { Router } from 'express'
 import { MongoClient as mongo } from "mongodb";
 import { ObjectId } from "mongodb";
+import { findInCollection } from '../db/search'
+import { insertToCollection } from '../db/insert'
 
 const router = Router();
 const dsn =  process.env.DBWEBB_DSN || "mongodb://localhost:27017/mumin";
 
 
 
-/**
- * Find documents in an collection by matching search criteria.
- *
- * @async
- *
- * @param {string} dsn        DSN to connect to database.
- * @param {string} colName    Name of collection.
- * @param {object} criteria   Search criteria.
- * @param {object} projection What to project in results.
- * @param {number} limit      Limit the number of documents to retrieve.
- *
- * @throws Error when database operation fails.
- *
- * @return {Promise<array>} The resultset as an array.
- */
-async function findInCollection(dsn, colName, criteria, projection, limit) {
-    const client  = await mongo.connect(dsn);
-    const db = await client.db();
-    const col = await db.collection(colName);
-    const res = await col.find(criteria, projection).limit(limit).toArray();
+// /**
+//  * Find documents in an collection by matching search criteria.
+//  *
+//  * @async
+//  *
+//  * @param {string} dsn        DSN to connect to database.
+//  * @param {string} colName    Name of collection.
+//  * @param {object} criteria   Search criteria.
+//  * @param {object} projection What to project in results.
+//  * @param {number} limit      Limit the number of documents to retrieve.
+//  *
+//  * @throws Error when database operation fails.
+//  *
+//  * @return {Promise<array>} The resultset as an array.
+//  */
+// async function findInCollection(dsn, colName, criteria, projection, limit) {
+//     const client  = await mongo.connect(dsn);
+//     const db = await client.db();
+//     const col = await db.collection(colName);
+//     const res = await col.find(criteria, projection).limit(limit).toArray();
+//
+//     await client.close();
+//
+//     return res;
+// }
 
-    await client.close();
-
-    return res;
-}
 
 
-/**
- * Insert a new document into database collection.
- * @param dsn
- * @param cloName
- * @param newDoc
- * @return {Promise<*>}
- */
-async function insertDoc(dsn, colName, requestBody) {
-    const client  = await mongo.connect(dsn);
-    const db = await client.db();
-    const col = await db.collection(colName);
-
-    const res = await col.insertOne(requestBody);
-
-    await client.close();
-
-    return res;
-}
 
 
 /**
@@ -118,38 +103,29 @@ async function deleteDoc(dsn, colName, requestBody) {
  */
 router.route('/')
     .get(async (req, res) => {
-
         try {
             let theSearch = await findInCollection(dsn, "crowd", {}, {}, 0);
 
             console.log('Response: \n', theSearch);
-            res.json(theSearch);
+            res.status(200).json(theSearch);
         } catch (err) {
             console.log(err);
             res.json(err);
         }
     })
     .post(async (req, res) => {
-
         try {
             let theDoc = await insertDoc(dsn, "crowd", req.body);
 
             console.log(`A new document was inserted with ID: ${theDoc.insertedId}`);
             console.log('Response: \n', theDoc);
-            res.json(theDoc);
+            res.status(201).json(theDoc);
         } catch (err) {
             console.log(err);
             res.json(err);
         }
     })
     .put(async (req, res) => {
-        let updatedDoc = {
-            $set: {
-                namn: req.body.namn,
-                bor: req.body.bor
-            }
-        }
-
         try {
             let theDoc = await updateDoc(dsn, "crowd", req.body);
 
@@ -168,6 +144,22 @@ router.route('/')
             console.log(`${theDoc.deletedCount} document(s) was/were deleted.`);
             console.log('Response: \n', theDoc);
             res.status(204).send(theDoc);
+        } catch (err) {
+            console.log(err);
+            res.json(err);
+        }
+    })
+
+/**
+ * Dynamic Search Route
+ */
+router.route('/:searchFor')
+    .get(async (req, res) => {
+        try {
+            let theSearch = await findInCollection(dsn, "crowd", { namn: req.params.searchFor }, {}, 0);
+
+            console.log('Response: \n', theSearch);
+            res.status(200).json(theSearch);
         } catch (err) {
             console.log(err);
             res.json(err);

@@ -4,7 +4,7 @@ const collectionName = "docs";
 
 const database = {
     getDb: async function getDb () {
-        let dsn = `mongodb+srv://texteditor:${config.username}@${config.password}.c1ix7.mongodb.net/mumin?retryWrites=true&w=majority`;
+        let dsn = `mongodb://localhost:27017/mumin`;
 
         if (process.env.NODE_ENV === 'test') {
             dsn = "mongodb://localhost:27017/test";
@@ -25,3 +25,6 @@ const database = {
 };
 
 module.exports = database;
+
+
+// mongodb+srv://texteditor:${config.username}@${config.password}.c1ix7.mongodb.net/mumin?retryWrites=true&w=majority

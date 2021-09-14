@@ -9,7 +9,7 @@ const router = Router();
  * Route Handlers.
  */
 router.route('/')
-    .get((req, res) => {
+    .get(async (req, res) => {
         const data = {
             data: {
                 msg: 'Hello World'

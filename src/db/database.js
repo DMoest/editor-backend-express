@@ -1,7 +1,6 @@
 const mongo = require("mongodb").MongoClient;
-const config = require("./setup.json");
-const collectionName = "docs";
 const config = require("./config.json");
+const collectionName = "docs";
 
 const database = {
     getDb: async function getDb () {

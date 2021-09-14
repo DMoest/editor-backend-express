@@ -34,6 +34,7 @@ app.disable('x-powered-by')
  */
 const indexRoutes = require('./routes/index');
 const userRoutes = require('./routes/user');
+const dataRoutes = require('./routes/data');
 
 
 /**
@@ -61,6 +62,7 @@ logger()
  */
 app.use('/', indexRoutes);
 app.use('/user', userRoutes);
+app.use('/data', dataRoutes);
 
 
 /**

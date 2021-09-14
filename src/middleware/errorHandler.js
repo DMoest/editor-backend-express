@@ -17,7 +17,7 @@ export const catchAll = () => {
 
 
 /**
- * Error Handler
+ * Error Handler for Route Requests.
  */
 export const errorHandler = () => {
     app.use((err, req, res, next) => {
@@ -35,4 +35,34 @@ export const errorHandler = () => {
             ]
         });
     });
+}
+
+
+/**
+ * Error Handler for Database.
+ */
+export const dbErrorHandler = async () => {
+    let db;
+
+    try {
+        db = await database.getDb();
+
+        const filter = { email: email };
+        const keyObject = await db.collection.findOne(filter);
+
+        if (keyObject) {
+            return res.json({ data: keyObject });
+        }
+    } catch (e) {
+        return res.status(500).json({
+            errors: {
+                status: 500,
+                source: "/",
+                title: "Database error",
+                detail: e.message
+            }
+        });
+    } finally {
+        await db.client.close();
+    }
 }

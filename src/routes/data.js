@@ -5,7 +5,8 @@ import { Router } from 'express'
 import { MongoClient as mongo } from "mongodb";
 import { ObjectId } from "mongodb";
 import { findInCollection } from '../db/search'
-import { insertToCollection } from '../db/insert'
+import { insertDocument } from '../db/insert'
+import { updateDocument } from '../db/update'
 
 const router = Router();
 const dsn =  process.env.DBWEBB_DSN || "mongodb://localhost:27017/mumin";
@@ -42,37 +43,7 @@ const dsn =  process.env.DBWEBB_DSN || "mongodb://localhost:27017/mumin";
 
 
 
-/**
- * Update a document in database collection.
- * @param dsn
- * @param colName
- * @param docId
- * @param updatedDoc
- * @return {Promise<*>}
- */
-async function updateDoc(dsn, colName, requestBody) {
-    const client  = await mongo.connect(dsn);
-    const db = await client.db();
-    const col = await db.collection(colName);
 
-    const filter = { _id: ObjectId(requestBody['_id']) };
-
-    let updateDoc = {
-        $set: {
-            namn: requestBody.namn,
-            bor: requestBody.bor
-        }
-    }
-
-    const result = await col.updateOne(
-        filter,
-        updateDoc,
-    );
-
-    await client.close();
-
-    return result;
-}
 
 
 /**
@@ -115,7 +86,7 @@ router.route('/')
     })
     .post(async (req, res) => {
         try {
-            let theDoc = await insertDoc(dsn, "crowd", req.body);
+            let theDoc = await insertDocument(dsn, "crowd", req.body);
 
             console.log(`A new document was inserted with ID: ${theDoc.insertedId}`);
             console.log('Response: \n', theDoc);
@@ -127,7 +98,7 @@ router.route('/')
     })
     .put(async (req, res) => {
         try {
-            let theDoc = await updateDoc(dsn, "crowd", req.body);
+            let theDoc = await updateDocument(dsn, "crowd", req.body);
 
             console.log(`A document was updated with ID: ${theDoc.insertedId}`);
             console.log('Response: \n', theDoc);

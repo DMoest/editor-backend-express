@@ -9,12 +9,14 @@ import { MongoClient as mongo } from "mongodb";
  * Get database from client.
  * Get collection in database.
  * Insert a new document into the database collection.
+ * Close database connection.
+ * Return results/response.
  * @param dsn
  * @param cloName
  * @param newDoc
  * @return {Promise<*>}
  */
-async function insertToCollection(dsn, colName, requestBody) {
+async function insertDocument(dsn, colName, requestBody) {
     const client  = await mongo.connect(dsn);
     const db = await client.db();
     const col = await db.collection(colName);
@@ -29,4 +31,4 @@ async function insertToCollection(dsn, colName, requestBody) {
 /**
  * Module Exports.
  */
-export default insertToCollection;
+export default insertDocument;

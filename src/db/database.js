@@ -24,6 +24,11 @@ const database = {
     }
 };
 
+
+/**
+ * Module Exports.
+ * @type {{getDb: (function(): {client: MongoClient, collection: *})}}
+ */
 module.exports = database;
 
 

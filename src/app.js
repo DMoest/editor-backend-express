@@ -32,9 +32,9 @@ app.disable('x-powered-by')
 /**
  * Import Route Modules
  */
-const indexRoutes = require('./routes/index');
-const userRoutes = require('./routes/user');
-const dataRoutes = require('./routes/data');
+const indexRoutes = require('./routes/index.router');
+const userRoutes = require('./routes/user.router');
+const dataRoutes = require('./routes/data.router');
 
 
 /**

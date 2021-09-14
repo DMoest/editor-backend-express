@@ -48,4 +48,6 @@ async function updateDocument(dsn, colName, requestBody) {
 /**
  * Module Exports.
  */
-export default updateDocument;
+module.exports = {
+    'updateDocument': updateDocument
+};

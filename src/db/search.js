@@ -34,4 +34,10 @@ async function findInCollection(dsn, colName, criteria, projection, limit) {
     return res;
 }
 
-export default findInCollection;
+
+/**
+ * Module Exports.
+ */
+module.exports = {
+    'findInCollection': findInCollection
+};

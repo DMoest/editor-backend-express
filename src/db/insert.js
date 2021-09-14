@@ -31,4 +31,6 @@ async function insertDocument(dsn, colName, requestBody) {
 /**
  * Module Exports.
  */
-export default insertDocument;
+module.exports = {
+  'insertDocument': insertDocument
+};

@@ -35,4 +35,6 @@ async function deleteDocument(dsn, colName, requestBody) {
 /**
  * Module Exports.
  */
-export default deleteDocument
+module.exports = {
+    'deleteDocument': deleteDocument
+};

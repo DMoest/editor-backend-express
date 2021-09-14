@@ -5,6 +5,7 @@ import { Router } from 'express'
 import { findInCollection } from '../db/search'
 import { insertDocument } from '../db/insert'
 import { updateDocument } from '../db/update'
+import { deleteDocument } from '../db/delete'
 
 const router = Router();
 const dsn =  process.env.DBWEBB_DSN || "mongodb://localhost:27017/mumin";
@@ -51,7 +52,7 @@ router.route('/')
     })
     .delete( async (req, res) => {
         try {
-            let theDoc = await deleteDoc(dsn, "crowd", req.body);
+            let theDoc = await deleteDocument(dsn, "crowd", req.body);
 
             console.log(`${theDoc.deletedCount} document(s) was/were deleted.`);
             console.log('Response: \n', theDoc);

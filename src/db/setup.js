@@ -8,7 +8,7 @@
  * Import Module Dependencies and declare constants.
  */
 const mongo = require("mongodb").MongoClient;
-// const config = require('./config.json')
+const config = require('./config.json');
 const docs = require('./setupDB.json');
 const findInCollection = require('./search.js');
 
@@ -17,23 +17,8 @@ const findInCollection = require('./search.js');
  * DSN Adresses local and MongoDB server.
  * @type {string}
  */
-const dsn = "mongodb://localhost:27017/mumin";
-// const dsn = `mongodb+srv://texteditor:${config.username}@${config.password}.c1ix7.mongodb.net/mumin?retryWrites=true&w=majority`;
-
-
-
-/**
- * Find documents where namn starts with string.
- * @type {{namn: RegExp}}
- */
-const criteria2 = {
-    namn: /^Sn/
-};
-const projection2 = {
-    _id: 1,
-    namn: 1
-};
-const limit2 = 3;
+// const dsn = "mongodb://localhost:27017/mumin";
+const dsn = `mongodb+srv://texteditor:${config.username}@${config.password}.c1ix7.mongodb.net/mumin?retryWrites=true&w=majority`;
 
 
 // Do it.

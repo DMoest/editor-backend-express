@@ -2,7 +2,7 @@
  * Import Module Dependencies and declare constants.
  */
 const mongo = require("mongodb").MongoClient;
-// const config = require('./config.json')
+const config = require('./config.json');
 const collectionName = "crowd";
 
 
@@ -14,8 +14,8 @@ const collectionName = "crowd";
  */
 const database = {
     getDb: async function getDb () {
-        let dsn = `mongodb://localhost:27017/mumin`;
-        // let dsn = `mongodb+srv://texteditor:${config.username}@${config.password}.c1ix7.mongodb.net/mumin?retryWrites=true&w=majority`;
+        // let dsn = `mongodb://localhost:27017/mumin`;
+        let dsn = `mongodb+srv://texteditor:${config.username}@${config.password}.c1ix7.mongodb.net/mumin?retryWrites=true&w=majority`;
 
         if (process.env.NODE_ENV === 'test') {
             dsn = "mongodb://localhost:27017/test";

@@ -5,9 +5,6 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const morgan = require('morgan');
 const cors = require('cors');
-// const logger = require('./src/middleware/logger.js');
-// const errorHandler = require('./src/middleware/errorHandler.js');
-// const catchAllRequests = require('./src/middleware/catchRequests.js');
 
 
 /**
@@ -97,10 +94,3 @@ app.use((err, req, res, next) => {
 app.listen(port, () => {
     console.log('Server is listening on port: ', port)
 });
-
-
-// /**
-//  * Module Exports.
-//  * @type {Express}
-//  */
-// module.exports = app;

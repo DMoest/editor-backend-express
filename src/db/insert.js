@@ -22,7 +22,7 @@ async function insertDocument(dsn, colName, requestBody) {
     const col = await db.collection(colName);
     const result = await col.insertOne(requestBody);
 
-    if (result.result.ok) {
+    if (result.ok) {
         return result.status(201).json({ data: result.ops });
     }
 

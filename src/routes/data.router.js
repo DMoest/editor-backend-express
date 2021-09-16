@@ -3,8 +3,11 @@
  */
 const express = require("express");
 const router = express.Router();
+const config = require("./../db/config.json");
 const docs = require('./../db/setupDB.json');
-const dsn =  process.env.DBWEBB_DSN || "mongodb://localhost:27017/mumin";
+const dsn = `mongodb+srv://texteditor:${config.password}@${config.username}.c1ix7.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
+// const dsn =  process.env.DBWEBB_DSN || "mongodb://localhost:27017/mumin";
+
 const findInCollection = require('./../db/search.js');
 const insertDocument = require('./../db/insert.js');
 const updateDocument = require('./../db/update.js');

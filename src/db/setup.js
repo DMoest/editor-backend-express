@@ -18,7 +18,7 @@ const findInCollection = require('./search.js');
  * @type {string}
  */
 // const dsn = "mongodb://localhost:27017/mumin";
-const dsn = `mongodb+srv://texteditor:${config.username}@${config.password}.c1ix7.mongodb.net/mumin?retryWrites=true&w=majority`;
+const dsn = `mongodb+srv://texteditor:${config.password}@${config.username}.c1ix7.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
 
 
 // Do it.

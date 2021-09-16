@@ -27,6 +27,7 @@ const port = process.env.PORT || 1337
 const indexRoutes = require('./src/routes/index.router.js');
 const userRoutes = require('./src/routes/user.router.js');
 const dataRoutes = require('./src/routes/data.router.js');
+const textDocumentRoutes = require('./src/routes/textDocument.router.js');
 
 
 /**
@@ -60,6 +61,7 @@ app.use((req, res, next) => {
 app.use('/', indexRoutes);
 app.use('/user', userRoutes);
 app.use('/data', dataRoutes);
+app.use('/document', textDocumentRoutes);
 
 
 /**

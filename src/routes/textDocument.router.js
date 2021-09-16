@@ -1,12 +1,16 @@
 /**
  * Import Module Dependencies & Declare Constants.
+ * -----------------------------------------------
+ * For local development comment out constants config & the dsn containing the adress to MongoDB Atlas.
+ * Then uncomment the dsn constant containing localhost:27017.
  */
 const express = require("express");
 const router = express.Router();
-const config = require("./../db/config.json");
 const docs = require('./../db/setupDB.json');
-const dsn = `mongodb+srv://texteditor:${config.password}@${config.username}.c1ix7.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
-// const dsn =  process.env.DBWEBB_DSN || "mongodb://localhost:27017/mumin";
+
+// const config = require("./../db/config.json");
+// const dsn = `mongodb+srv://texteditor:${config.password}@${config.username}.c1ix7.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
+const dsn =  process.env.DBWEBB_DSN || "mongodb://localhost:27017/mumin";
 
 const findInCollection = require('./../db/search.js');
 const insertDocument = require('./../db/insert.js');
@@ -79,23 +83,6 @@ router.route('/reset')
 
             console.log('Response: \n', theReset);
             res.status(200).json(theReset);
-        } catch (err) {
-            console.log(err);
-            res.json(err);
-        }
-    })
-
-
-/**
- * Dynamic Search Route
- */
-router.route('/:searchFor')
-    .get(async (req, res) => {
-        try {
-            let theSearch = await findInCollection(dsn, "crowd", { namn: req.params.searchFor }, {}, 0);
-
-            console.log('Response: \n', theSearch);
-            res.status(200).json(theSearch);
         } catch (err) {
             console.log(err);
             res.json(err);

@@ -1,7 +1,7 @@
 /**
  * Import Module Dependencies.
  */
-import { MongoClient as mongo } from "mongodb";
+const mongo = require("mongodb").MongoClient;
 
 
 /**
@@ -20,17 +20,19 @@ async function insertDocument(dsn, colName, requestBody) {
     const client  = await mongo.connect(dsn);
     const db = await client.db();
     const col = await db.collection(colName);
-    const res = await col.insertOne(requestBody);
+    const result = await col.insertOne(requestBody);
+
+    if (result.result.ok) {
+        return result.status(201).json({ data: result.ops });
+    }
 
     await client.close();
 
-    return res;
+    return result;
 }
 
 
 /**
  * Module Exports.
  */
-module.exports = {
-  'insertDocument': insertDocument
-};
+module.exports = insertDocument;

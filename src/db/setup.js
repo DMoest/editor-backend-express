@@ -3,22 +3,42 @@
  */
 "use strict";
 
+
+/**
+ * Import Module Dependencies and declare constants.
+ */
 const mongo = require("mongodb").MongoClient;
-const dsn =  process.env.DBWEBB_DSN || "mongodb://localhost:27017/mumin";
+// const config = require('./config.json')
+const docs = require('./setupDB.json');
+const findInCollection = require('./search.js');
 
-const fs = require("fs");
-const path = require("path");
-const docs = JSON.parse(fs.readFileSync(
-    path.resolve(__dirname, "setup.json"),
-    "utf8"
-));
 
+/**
+ * DSN Adresses local and MongoDB server.
+ * @type {string}
+ */
+const dsn = "mongodb://localhost:27017/mumin";
+// const dsn = `mongodb+srv://texteditor:${config.username}@${config.password}.c1ix7.mongodb.net/mumin?retryWrites=true&w=majority`;
+
+
+
+/**
+ * Find documents where namn starts with string.
+ * @type {{namn: RegExp}}
+ */
+const criteria2 = {
+    namn: /^Sn/
+};
+const projection2 = {
+    _id: 1,
+    namn: 1
+};
+const limit2 = 3;
 
 
 // Do it.
 resetCollection(dsn, "crowd", docs)
     .catch(err => console.log(err));
-
 
 
 /**
@@ -45,3 +65,9 @@ async function resetCollection(dsn, colName, doc) {
 
     await client.close();
 }
+
+
+/**
+ * Module Exports.
+ */
+module.exports = resetCollection;

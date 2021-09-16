@@ -7,7 +7,6 @@
 const mongo = require("mongodb").MongoClient;
 
 
-
 /**
  * Find documents in an collection by matching search criteria.
  *
@@ -38,6 +37,4 @@ async function findInCollection(dsn, colName, criteria, projection, limit) {
 /**
  * Module Exports.
  */
-module.exports = {
-    'findInCollection': findInCollection
-};
+module.exports = findInCollection;

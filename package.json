@@ -1,53 +1,52 @@
 {
   "name": "editor-backend-express",
   "version": "1.0.0",
-  "main": "app.js",
   "author": "Daniel Andersson",
   "license": "MIT",
+  "main": "app.js",
   "scripts": {
-    "build": "babel src --out-dir dist",
-    "dev": "nodemon --exec npm run restart",
-    "production": "npm run build && NODE_ENV='production' node dist/app.js",
-    "restart": "rimraf dist && npm run build && npm run start",
-    "start": "nodemon dist/app.js"
+    "production": "NODE_ENV='production' nodemon app.js",
+    "start": "nodemon app.js"
   },
+  "keywords": [
+    "api",
+    "texteditor",
+    "express",
+    "mongodb",
+    "babel",
+    "webpack"
+  ],
   "dependencies": {
-    "bcrypt": "^5.0.0",
-    "bcryptjs": "^2.4.3",
-    "body-parser": "^1.18.3",
     "cors": "^2.8.5",
-    "cuid": "^2.1.4",
-    "dotenv": "^6.1.0",
-    "express": "^4.16.4",
-    "jsonwebtoken": "^8.4.0",
-    "lodash": "^4.17.11",
-    "mongodb": "^4.1.1",
+    "express": "^4.17.1",
+    "mongodb": "^4.1.2",
     "mongoose": "^5.3.13",
-    "morgan": "^1.9.1",
-    "validator": "^10.9.0"
+    "morgan": "^1.10.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.0.0",
-    "@babel/core": "^7.0.0",
-    "@babel/plugin-proposal-class-properties": "^7.0.0",
-    "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
-    "@babel/preset-env": "^7.0.0",
-    "babel-core": "7.0.0-bridge.0",
-    "babel-eslint": "^8.2.1",
     "cross-env": "^7.0.2",
-    "eslint": "^4.15.0",
-    "eslint-config-prettier": "^2.9.0",
-    "eslint-config-standard": "^11.0.0",
-    "eslint-friendly-formatter": "^3.0.0",
-    "eslint-loader": "^1.7.1",
-    "eslint-plugin-import": "^2.13.0",
-    "eslint-plugin-jest": "^21.15.1",
-    "eslint-plugin-node": "^7.0.1",
-    "eslint-plugin-prettier": "^2.6.2",
-    "eslint-plugin-promise": "^3.8.0",
-    "eslint-plugin-standard": "^3.1.0",
     "nodemon": "^2.0.12",
-    "prettier": "^1.15.2",
-    "rimraf": "^2.6.2"
+    "prettier": "^1.15.2"
+  },
+  "nodemonConfig": {
+    "restartable": "rs",
+    "ignore": [
+      ".git",
+      "node_modules/**/node_modules",
+      "node_modules/*"
+    ],
+    "verbose": true,
+    "execMap": {
+      "js": "node"
+    },
+    "runOnChangeOnly": false,
+    "watch": [
+      "src/**/*.js",
+      "src/**/*.json"
+    ],
+    "env": {
+      "NODE_ENV": "development"
+    },
+    "ext": "js,json"
   }
 }

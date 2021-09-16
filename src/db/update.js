@@ -1,7 +1,8 @@
 /**
  * Import Module Dependencies.
  */
-import { MongoClient as mongo, ObjectId } from "mongodb";
+const mongo = require("mongodb").MongoClient;
+const ObjectId = require('mongodb').ObjectId;
 
 
 /**
@@ -48,6 +49,4 @@ async function updateDocument(dsn, colName, requestBody) {
 /**
  * Module Exports.
  */
-module.exports = {
-    'updateDocument': updateDocument
-};
+module.exports = updateDocument;

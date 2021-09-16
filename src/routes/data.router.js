@@ -1,14 +1,15 @@
 /**
  * Import Module Dependencies & Declare Constants.
  */
-import { Router } from 'express'
-import { findInCollection } from '../db/search'
-import { insertDocument } from '../db/insert'
-import { updateDocument } from '../db/update'
-import { deleteDocument } from '../db/delete'
-
-const router = Router();
+const express = require("express");
+const router = express.Router();
+const docs = require('./../db/setupDB.json');
 const dsn =  process.env.DBWEBB_DSN || "mongodb://localhost:27017/mumin";
+const findInCollection = require('./../db/search.js');
+const insertDocument = require('./../db/insert.js');
+const updateDocument = require('./../db/update.js');
+const deleteDocument = require('./../db/delete.js');
+const resetCollection = require('./../db/setup.js');
 
 
 /**
@@ -73,6 +74,19 @@ router.route('/:searchFor')
 
             console.log('Response: \n', theSearch);
             res.status(200).json(theSearch);
+        } catch (err) {
+            console.log(err);
+            res.json(err);
+        }
+    })
+
+router.route('/resetMumin')
+    .get(async (req, res) => {
+        try {
+            let theReset = await resetCollection(dsn, "crowd", docs);
+
+            console.log('Response: \n', theReset);
+            res.status(200).json(theReset);
         } catch (err) {
             console.log(err);
             res.json(err);

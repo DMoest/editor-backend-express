@@ -1,7 +1,8 @@
 /**
  * Import Module Dependencies.
  */
-import {MongoClient as mongo, ObjectId} from "mongodb";
+const mongo = require("mongodb").MongoClient;
+const ObjectId = require('mongodb').ObjectId;
 
 
 /**
@@ -35,6 +36,4 @@ async function deleteDocument(dsn, colName, requestBody) {
 /**
  * Module Exports.
  */
-module.exports = {
-    'deleteDocument': deleteDocument
-};
+module.exports = deleteDocument;

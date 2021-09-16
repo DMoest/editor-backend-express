@@ -1,22 +1,10 @@
 /**
  * Import Module Dependencies & Declare Constants.
- * -----------------------------------------------
- * For local development comment out constants config & the dsn containing the adress to MongoDB Atlas.
- * Then uncomment the dsn constant containing localhost:27017.
  */
 const express = require("express");
 const router = express.Router();
-const docs = require('./../db/setupDB.json');
-
-// const config = require("./../db/config.json");
-// const dsn = `mongodb+srv://texteditor:${config.password}@${config.username}.c1ix7.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
-const dsn =  process.env.DBWEBB_DSN || "mongodb://localhost:27017/mumin";
-
-const findInCollection = require('./../db/search.js');
-const insertDocument = require('./../db/insert.js');
-const updateDocument = require('./../db/update.js');
-const deleteDocument = require('./../db/delete.js');
-const resetCollection = require('./../db/setup.js');
+const database = require('./../db/database');
+const docs = require('./../db/setup_documents.json');
 
 
 /**
@@ -25,51 +13,77 @@ const resetCollection = require('./../db/setup.js');
 router.route('/')
     .get(async (req, res) => {
         try {
-            let theSearch = await findInCollection(dsn, "crowd", {}, {}, 0);
+            let theSearch = await database.readFromDb("documents", {}, {}, 0);
 
             console.log('Response: \n', theSearch);
             res.status(200).json(theSearch);
         } catch (err) {
-            console.log(err);
-            res.json(err);
+            // console.log(err);
+            return res.status(500).json({
+                errors: {
+                    status: 500,
+                    source: "/data",
+                    title: "Database error",
+                    detail: err.message
+                }
+            });
         }
     })
     .post(async (req, res) => {
         try {
-            let theDoc = await insertDocument(dsn, "crowd", req.body);
+            let result = await database.createInDb("documents", req.body);
 
-            console.log(`A new document was inserted with ID: ${theDoc.insertedId}`);
-            console.log('Response: \n', theDoc);
-            res.status(201).json(theDoc);
-        } catch (err) {
-            console.log(err);
-            res.json(err);
+            console.log('Response: \n', result);
+            res.status(201).json(result);
+        } catch(err) {
+            return res.status(500).json({
+                errors: {
+                    status: 500,
+                    source: "/data",
+                    title: "Database error",
+                    detail: err.message
+                }
+            });
         }
     })
     .put(async (req, res) => {
         try {
-            let theDoc = await updateDocument(dsn, "crowd", req.body);
+            let theDoc = await database.updateInDb("documents", req.body);
 
             console.log(`A document was updated with ID: ${theDoc.insertedId}`);
             console.log('Response: \n', theDoc);
+
             res.status(204).send(theDoc);
-        } catch (err) {
-            console.log(err);
-            res.json(err);
+        } catch(err) {
+            return res.status(500).json({
+                errors: {
+                    status: 500,
+                    source: "/data",
+                    title: "Database error",
+                    detail: err.message
+                }
+            });
         }
     })
     .delete( async (req, res) => {
         try {
-            let theDoc = await deleteDocument(dsn, "crowd", req.body);
+            const result = await database.deleteFromDb("documents", req.body);
 
-            console.log(`${theDoc.deletedCount} document(s) was/were deleted.`);
-            console.log('Response: \n', theDoc);
-            res.status(204).send(theDoc);
+            console.log(`${ result.deletedCount } document(s) was/where deleted.`);
+
+            return result;
+
         } catch (err) {
-            console.log(err);
-            res.json(err);
+            return res.status(500).json({
+                errors: {
+                    status: 500,
+                    source: "/data",
+                    title: "Database error",
+                    detail: err.message
+                }
+            });
         }
-    })
+    });
 
 
 /**
@@ -79,15 +93,38 @@ router.route('/')
 router.route('/reset')
     .get(async (req, res) => {
         try {
-            let theReset = await resetCollection(dsn, "crowd", docs);
+            let theReset = await database.resetCollection("documents", docs);
 
             console.log('Response: \n', theReset);
             res.status(200).json(theReset);
         } catch (err) {
+            return res.status(500).json({
+                errors: {
+                    status: 500,
+                    source: "/data",
+                    title: "Database error",
+                    detail: err.message
+                }
+            });
+        }
+    });
+
+
+/**
+ * Dynamic Search Route
+ */
+router.route('/:searchFor')
+    .get(async (req, res) => {
+        try {
+            let theSearch = await findInCollection(dsn, "documents", { namn: req.params.searchFor }, {}, 0);
+
+            console.log('Response: \n', theSearch);
+            res.status(200).json(theSearch);
+        } catch (err) {
             console.log(err);
             res.json(err);
         }
-    })
+    });
 
 
 /**

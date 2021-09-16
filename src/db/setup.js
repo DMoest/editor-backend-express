@@ -10,7 +10,6 @@
 const mongo = require("mongodb").MongoClient;
 const config = require('./config.json');
 const docs = require('./setupDB.json');
-const findInCollection = require('./search.js');
 
 
 /**

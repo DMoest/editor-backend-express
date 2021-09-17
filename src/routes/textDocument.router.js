@@ -93,7 +93,7 @@ router.route('/')
 router.route('/reset')
     .get(async (req, res) => {
         try {
-            let theReset = await database.resetCollection("documents", docs);
+            let theReset = await database.resetDbCollection("documents", docs);
 
             console.log('Response: \n', theReset);
             res.status(200).json(theReset);
@@ -116,7 +116,7 @@ router.route('/reset')
 router.route('/:searchFor')
     .get(async (req, res) => {
         try {
-            let theSearch = await findInCollection(dsn, "documents", { namn: req.params.searchFor }, {}, 0);
+            let theSearch = await readFromDb("documents", { namn: req.params.searchFor }, {}, 0);
 
             console.log('Response: \n', theSearch);
             res.status(200).json(theSearch);

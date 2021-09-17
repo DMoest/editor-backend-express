@@ -9,19 +9,19 @@
  */
 const mongo = require("mongodb").MongoClient;
 const config = require('./config.json');
-const docs = require('./setupDB.json');
+const docs = require('./setup_documents.json');
 
 
 /**
  * DSN Adresses local and MongoDB server.
  * @type {string}
  */
-// const dsn = "mongodb://localhost:27017/mumin";
+// const dsn = "mongodb://localhost:27017/documents";
 const dsn = `mongodb+srv://texteditor:${config.password}@${config.username}.c1ix7.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
 
 
 // Do it.
-resetCollection(dsn, "crowd", docs)
+resetCollection(dsn, "documents", docs)
     .catch(err => console.log(err));
 
 

@@ -1,22 +1,29 @@
 [
   {
     "author": "Mumintrollet",
-    "name": "Mumindalens bästa historier",
+    "title": "Mumindalens bästa historier",
     "created": "2021-09-16",
     "updated": "",
     "deleted": ""
   },
   {
     "author": "Snusmumriken",
-    "name": "Snusets fläckar på duken",
+    "title": "Snusets fläckar på duken",
     "created": "2019-05-22",
     "updated": "2020-03-01",
     "deleted": ""
   },
   {
     "author": "Jultomten",
-    "name": "Jultomtens egna julklappstips",
+    "title": "Jultomtens egna julklappstips",
     "created": "1203-12-24",
+    "updated": "",
+    "deleted": ""
+  },
+  {
+    "author": "Kyle Simpsom",
+    "title": "You dont know JS",
+    "created": "2014-03-05",
     "updated": "",
     "deleted": ""
   }

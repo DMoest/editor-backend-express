@@ -32,15 +32,20 @@ const database = {
      * @return {Promise<{client: *, collection: (*|Object|ObjectConstructor|*)}>}
      */
     getDb: async function getDb(collectionName) {
+        let dsn;
+
         if (process.env.NODE_ENV === 'test') {
-            this.dsn = "mongodb://localhost:27017/test";
+            dsn = "mongodb://localhost:27017/test";
         } else if (process.env.NODE_ENV === 'development') {
-            this.dsn = `mongodb://localhost:27017/mumin`;
+            dsn = `mongodb://localhost:27017/document`;
         } else if (process.env.NODE_ENV === 'production') {
-            this.dsn = `mongodb+srv://texteditor:${config.password}@${config.username}.c1ix7.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
+            dsn = `mongodb+srv://texteditor:${config.password}@${config.username}.c1ix7.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
         }
 
-        this.dbClient  = await mongo.connect(this.dsn, {
+
+
+
+        this.dbClient  = await mongo.connect(dsn, {
             useNewUrlParser: true,
             useUnifiedTopology: true,
         });
@@ -122,8 +127,9 @@ const database = {
         let filter = { _id: ObjectId(requestBody['_id']) };
         let updatedObject = {
             $set: {
-                namn: requestBody.namn,
-                bor: requestBody.bor
+                author: requestBody.author,
+                title: requestBody.title,
+                updated: requestBody.updated
             }
         };
 
@@ -171,7 +177,7 @@ const database = {
      * @param collectionName
      * @return {Promise<void>}
      */
-    resetCollection: async function resetCollection(collectionName, doc) {
+    resetDbCollection: async function hejdar(collectionName, doc) {
         await this.getDb(collectionName);
         await this.dbCollection.deleteMany();
         await this.dbCollection.insertMany(doc);

@@ -42,9 +42,6 @@ const database = {
             dsn = `mongodb+srv://texteditor:${config.password}@${config.username}.c1ix7.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
         }
 
-
-
-
         this.dbClient  = await mongo.connect(dsn, {
             useNewUrlParser: true,
             useUnifiedTopology: true,

@@ -2,7 +2,7 @@
  * Import Module Dependencies.
  */
 const express = require("express");
-const bodyParser = require("body-parser");
+// const bodyParser = require("body-parser");
 const morgan = require('morgan');
 const cors = require('cors');
 
@@ -33,8 +33,8 @@ const textDocumentRoutes = require('./src/routes/textDocument.router.js');
 /**
  * Middlewares used by all routes.
  */
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
 /**
@@ -93,6 +93,8 @@ app.use((err, req, res, next) => {
 /**
  * Start function.
  */
+console.log('Node Environment: ', process.env.NODE_ENV);
+
 app.listen(port, () => {
     console.log('Server is listening on port: ', port)
 });

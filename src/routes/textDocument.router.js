@@ -5,6 +5,9 @@ const express = require("express");
 const router = express.Router();
 const database = require('./../db/database');
 const docs = require('./../db/setup_documents.json');
+const db = require("./../db/database.js");
+const documentModel = require("./../db/models/document");
+
 
 
 /**
@@ -12,77 +15,90 @@ const docs = require('./../db/setup_documents.json');
  */
 router.route('/')
     .get(async (req, res) => {
-        try {
-            let theSearch = await database.readFromDb("documents", {}, {}, 0);
+        db.connectDb("documents")
+            .then(async connection => {
+                let queryResult = await documentModel.Document.find({}).exec();
 
-            console.log('Response: \n', theSearch);
-            res.status(200).json(theSearch);
-        } catch (err) {
-            // console.log(err);
-            return res.status(500).json({
-                errors: {
-                    status: 500,
-                    source: "/data",
-                    title: "Database error",
-                    detail: err.message
-                }
+                return res.status(200).json(queryResult);
+            })
+            .catch(error => {
+                return res.status(500).json({
+                    errors: {
+                        status: 500,
+                        source: "/data",
+                        title: "Database error",
+                        detail: error.message
+                    }
+                });
             });
-        }
     })
     .post(async (req, res) => {
-        try {
-            let result = await database.createInDb("documents", req.body);
+        db.connectDb("documents")
+            .then(async connection => {
+                let result = await documentModel.Document.create({
+                    author: req.body.author,
+                    title: req.body.title,
+                    category: req.body.category,
+                    text: req.body.text,
+                    status: req.body.status
+                });
 
-            console.log('Response: \n', result);
-            res.status(201).json(result);
-        } catch(err) {
-            return res.status(500).json({
-                errors: {
-                    status: 500,
-                    source: "/data",
-                    title: "Database error",
-                    detail: err.message
-                }
+                return res.status(201).json(result);
+            })
+            .catch(error => {
+                return res.status(500).json({
+                    errors: {
+                        status: 500,
+                        source: "/data",
+                        title: "Database error",
+                        detail: error.message
+                    }
+                });
             });
-        }
     })
     .put(async (req, res) => {
-        try {
-            let theDoc = await database.updateInDb("documents", req.body);
-
-            console.log(`A document was updated with ID: ${theDoc.insertedId}`);
-            console.log('Response: \n', theDoc);
-
-            res.status(204).send(theDoc);
-        } catch(err) {
-            return res.status(500).json({
-                errors: {
-                    status: 500,
-                    source: "/data",
-                    title: "Database error",
-                    detail: err.message
+        db.connectDb("documents")
+            .then(async connection => {
+                let updatedObject = {
+                    author: req.body.author,
+                    title: req.body.title,
+                    category: req.body.category,
+                    text: req.body.text,
+                    status: req.body.status
                 }
+
+                let result = await documentModel.Document.findByIdAndUpdate(req.body._id, updatedObject, { new: true });
+
+                return res.status(204).send(result);
+            })
+            .catch(error => {
+                return res.status(500).json({
+                    errors: {
+                        status: 500,
+                        source: "/data",
+                        title: "Database error",
+                        detail: error.message
+                    }
+                });
             });
-        }
     })
     .delete( async (req, res) => {
-        try {
-            const result = await database.deleteFromDb("documents", req.body);
+        db.connectDb("documents")
+            .then(async connection => {
+                let result = await documentModel.Document.findByIdAndRemove(req.body._id);
 
-            console.log(`${ result.deletedCount } document(s) was/where deleted.`);
-
-            return result;
-
-        } catch (err) {
-            return res.status(500).json({
-                errors: {
-                    status: 500,
-                    source: "/data",
-                    title: "Database error",
-                    detail: err.message
-                }
+                return res.status(204).send(result);
+            })
+            .catch(error => {
+                return res.status(500).json({
+                    errors: {
+                        status: 500,
+                        source: "/data",
+                        title: "Database error",
+                        detail: error.message
+                    }
+                });
             });
-        }
     });
 
 

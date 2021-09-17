@@ -2,29 +2,29 @@
   {
     "author": "Mumintrollet",
     "title": "Mumindalens bästa historier",
-    "created": "2021-09-16",
-    "updated": "",
-    "deleted": ""
+    "category": "Novel",
+    "text": "Här är en jätte bra text skriven av Mumintrollet. Historien handlar om Mumindalen och andra finska konstigheter.",
+    "status": "created"
   },
   {
     "author": "Snusmumriken",
     "title": "Snusets fläckar på duken",
-    "created": "2019-05-22",
-    "updated": "2020-03-01",
-    "deleted": ""
+    "category": "Thriller",
+    "text": "Här är en jätte bra text skriven av Snusmumriken. Historien handlar om Mumindalen och andra finska konstigheter.",
+    "status": "created"
   },
   {
     "author": "Jultomten",
     "title": "Jultomtens egna julklappstips",
-    "created": "1203-12-24",
-    "updated": "",
-    "deleted": ""
+    "category": "Julsaga",
+    "text": "Kalle Ankas jul, vi känner alla till hur den historien går. bla bla bla...",
+    "status": "created"
   },
   {
     "author": "Kyle Simpsom",
     "title": "You dont know JS",
-    "created": "2014-03-05",
-    "updated": "",
-    "deleted": ""
+    "category": "JavaScript Programmering",
+    "text": "Kyle Simpson skriver mycket djupgående förklaring för hur JavaScript som språk fungerar och uppmanar till god förståelse för grundläggande kunskaper om språket.",
+    "status": "created"
   }
 ]

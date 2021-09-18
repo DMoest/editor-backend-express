@@ -4,8 +4,9 @@
 const express = require("express");
 const router = express.Router();
 const db = require('./../db/database.js');
-const documentModel = require('./../db/models/document');
-const docs = require('./../db/setup_mumin.json');
+const documentModel = require('./../db/models/mumindalen.js');
+const docs = require('../db/setup_collections/setup_mumin.json');
+const dbName = "textEditor";
 
 
 /**
@@ -13,7 +14,7 @@ const docs = require('./../db/setup_mumin.json');
  */
 router.route('/')
     .get(async (req, res) => {
-        db.connectDb("mumin")
+        db.connectDb(dbName)
             .then(async connection => {
                 let queryResult = await documentModel.Document.find({}).exec();
 
@@ -31,14 +32,13 @@ router.route('/')
             });
     })
     .post(async (req, res) => {
-        db.connectDb("mumin")
+        db.connectDb(dbName)
             .then(async connection => {
                 let result = await documentModel.Document.create({
-                    author: req.body.author,
-                    title: req.body.title,
-                    category: req.body.category,
-                    text: req.body.text,
-                    status: req.body.status
+                    namn: req.body.namn,
+                    bor: req.body.bor,
+                    adress: req.body.adress,
+                    info: req.body.info
                 });
 
                 return res.status(201).json(result);
@@ -55,14 +55,13 @@ router.route('/')
             });
     })
     .put(async (req, res) => {
-        db.connectDb("mumin")
+        db.connectDb(dbName)
             .then(async connection => {
                 let updatedObject = {
-                    author: req.body.author,
-                    title: req.body.title,
-                    category: req.body.category,
-                    text: req.body.text,
-                    status: req.body.status
+                    namn: req.body.namn,
+                    bor: req.body.bor,
+                    adress: req.body.adress,
+                    info: req.body.info
                 }
 
                 let result = await documentModel.Document.findByIdAndUpdate(req.body._id, updatedObject, { new: true });
@@ -81,7 +80,7 @@ router.route('/')
             });
     })
     .delete( async (req, res) => {
-        db.connectDb("mumin")
+        db.connectDb(dbName)
             .then(async connection => {
                 let result = await documentModel.Document.findByIdAndRemove(req.body._id);
 

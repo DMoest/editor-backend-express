@@ -3,10 +3,9 @@
  */
 const express = require("express");
 const router = express.Router();
-const database = require('./../db/database');
-const docs = require('./../db/setup_documents.json');
 const db = require("./../db/database.js");
 const documentModel = require("./../db/models/document");
+const dbName = "textEditor";
 
 
 
@@ -15,7 +14,7 @@ const documentModel = require("./../db/models/document");
  */
 router.route('/')
     .get(async (req, res) => {
-        db.connectDb("mumin")
+        db.connectDb(dbName)
             .then(async () => {
                 let queryResult = await documentModel.Document.find({}).exec();
 
@@ -33,7 +32,7 @@ router.route('/')
             });
     })
     .post(async (req, res) => {
-        db.connectDb("mumin")
+        db.connectDb(dbName)
             .then(async connection => {
                 let result = await documentModel.Document.create({
                     author: req.body.author,
@@ -57,7 +56,7 @@ router.route('/')
             });
     })
     .put(async (req, res) => {
-        db.connectDb("mumin")
+        db.connectDb(dbName)
             .then(async connection => {
                 let updatedObject = {
                     author: req.body.author,
@@ -83,7 +82,7 @@ router.route('/')
             });
     })
     .delete( async (req, res) => {
-        db.connectDb("mumin")
+        db.connectDb(dbName)
             .then(async connection => {
                 let result = await documentModel.Document.findByIdAndRemove(req.body._id);
 
@@ -99,47 +98,6 @@ router.route('/')
                     }
                 });
             });
-    });
-
-
-/**
- * Route for resetting the database.
- * This is only for testing purposes, comment out before application goes into production.
- */
-router.route('/reset')
-    .get(async (req, res) => {
-        try {
-            let theReset = await database.resetDbCollection("documents", docs);
-
-            console.log('Response: \n', theReset);
-            res.status(200).json(theReset);
-        } catch (err) {
-            return res.status(500).json({
-                errors: {
-                    status: 500,
-                    source: "/data",
-                    title: "Database error",
-                    detail: err.message
-                }
-            });
-        }
-    });
-
-
-/**
- * Dynamic Search Route
- */
-router.route('/:searchFor')
-    .get(async (req, res) => {
-        try {
-            let theSearch = await readFromDb("documents", { namn: req.params.searchFor }, {}, 0);
-
-            console.log('Response: \n', theSearch);
-            res.status(200).json(theSearch);
-        } catch (err) {
-            console.log(err);
-            res.json(err);
-        }
     });
 
 

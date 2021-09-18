@@ -1,0 +1,182 @@
+[
+  {
+    "namn": "Mumintrollet",
+    "bor": "Mumindalen",
+    "adress": "Muminhuset",
+    "info": "Han är ett snällt mumintroll som är mycket intresserat av allt som händer i hans omgivning. Det finns så mycket spännande saker han måste undersöka och han tycker särskilt mycket om att samla på stenar och snäckor. Mumintrollet älskar havet, precis som alla i Muminfamiljen."
+  },
+  {
+    "namn": "Sniff",
+    "bor": "Mumindalen",
+    "adress": "Muminhuset",
+    "info": "Sniff bor i Muminhuset precis som Lilla My. Han följer gärna med mumintrollen överallt, men han är ganska skygg och vill inte ge sig in på något farligt. Han är mycket snäll, och ibland litet rädd av sig."
+  },
+  {
+    "namn": "Snusmumriken",
+    "bor": "Mumindalen",
+    "adress": "",
+    "info": "Snusmumriken är en filosofisk ensling som tycker om att fiska och spela munspel. Han är en vandrare som bär allt han behöver i en ryggsäck på ryggen. Han tycker nämligen att för många ägodelar gör livet onödigt komplicerat."
+  },
+  {
+    "namn": "Snorkfröken",
+    "bor": "Mumindalen",
+    "adress": "",
+    "info": "Snorkfröken är Mumintrollets lekkamrat och flickvän. De tycker mycket om varandra och gör ofta saker tillsammans. Snorkfröken är glad och snäll, men ibland kan hennes ombytliga humör vara ganska irriterande."
+  },
+  {
+    "namn": "Lilla My",
+    "bor": "Mumindalen",
+    "adress": "Muminhuset",
+    "info": "Lilla My bor med muminfamiljen i Muminhuset fastän hon inte alls är släkt med dem. My följer gärna med på mumintrollens alla äventyr för hon är mycket modig och orädd. Ibland verkar hon faktiskt älska små katastrofer."
+  },
+  {
+    "namn": "Knyttet",
+    "bor": "Mumindalen",
+    "adress": "",
+    "info": "Knyttet är en ängslig person som är rädd för det mesta, tills han möter någon som är ännu mera rädd än vad han är. Han bor i Mumindalen men han är väldigt ensam, så en dag beger han sig ut på ett äventyr för att hitta en vän."
+  },
+  {
+    "namn": "Rådd-djuret",
+    "bor": "Mumindalen",
+    "adress": "",
+    "info": "Rådd-djuret är ett litet djur som fnattar omkring i hög fart och tanklöshet. Han bor i en stor kaffeburk. Han plockar upp alla knappar han hittar men är mycket slarvig. Rådd-djuret glömmer och tappar så mycket man bara kan."
+  },
+  {
+    "namn": "Filifjonkan",
+    "bor": "Mumindalen",
+    "adress": "",
+    "info": "Filifjonkan tycker det är mycket viktigt med ordning och stränga principer. Hon vill inte att barnen ska få fula fasoner och blir bekymrad om lekarna är för vilda. Filifjonkan vill att regler och traditioner följs till punkt och pricka."
+  },
+  {
+    "namn": "Förfadern",
+    "bor": "Mumindalen",
+    "adress": "",
+    "info": "Mumintrollens Förfader är ett litet, lurvigt och grått troll med en stor nos och en lång svart svans som varken talar eller äter. I Trollvinter släpper Mumintrollet Förfadern ut ur garderoben och bekantar sig med det. Förfadern flyttar in i Muminhuset och ommöblerar hela huset en natt. Det staplar gammalt bråte kring kakelugnen där det bosatt sig. Enligt Muminmamman levde mumintrollens förfäder bakom kakelugnar."
+  },
+  {
+    "namn": "Mymlan",
+    "bor": "Mumindalen",
+    "adress": "",
+    "info": "Mymlan är Lilla Mys syster och Snusmumrikens halvsyster. Deras mamma heter också Mymlan. Den vänliga och hjälpsamma storasystern Mymlan fick småningom ta hand om alla sina småsyskon."
+  },
+  {
+    "namn": "Muminpappan",
+    "bor": "Mumindalen",
+    "adress": "Muminhuset",
+    "info": "Muminpappan är pojkaktig och äventyrlig, och rätt stolt över att vara familjens överhuvud. Han älskar att filosofera och vill absolut vara med när det händer något överraskande i Mumindalen. Muminpappan tycker själv att han kan och vet en väldig massa saker, och han kommer gärna med goda råd."
+  },
+  {
+    "namn": "Stinky",
+    "bor": "Mumindalen",
+    "adress": "",
+    "info": "Stinky är en liten och vresig varelse som hela tiden hittar på rackartyg. Han gör det inte bara för att vara elak utan han riktigt njuter av att lura invånarna i Mumindalen och av att stjäla saker av dem. Men Stinky åker alltid fast för sina busstreck."
+  },
+  {
+    "namn": "Isfrun",
+    "bor": "Mumindalen",
+    "adress": "",
+    "info": "I Trollvinter uppmanar Too-ticki alla att stanna inomhus när den stora kölden, det vill säga Isfrun, är på kommande. Hon besöker Mumindalen en gång varje vinter i skymningen och är fruktad av alla – ser man Isfrun rakt i ansiktet fryser man nämligen till is, vilket också sker med Lilla My."
+  },
+  {
+    "namn": "Bisamråttan",
+    "bor": "Mumindalen",
+    "adress": "",
+    "info": "Bisamråttan är mycket hårig filosof med en mustasch och långa polisonger. Han är en väldigt allvarlig bisamråtta, som helst vill vara i lugn och ro. När Muminpappan bygger en bro vid flodstranden och oavsiktligt förstör Bisamråttans hem, flyttar han in hos muminfamiljen. Hans favoritställe är muminfamiljens hängmatta och i den läser han gärna sin favoritbok: Om alltings onödighet.  Det värsta Bisamråttan vet är att förlora sin värdighet – vilket tyvärr händer allt för ofta i muminhuset. Senare flyttar Bisamråttan in i Sniffs grotta där han får vara för sig själv."
+  },
+  {
+    "namn": "Snorken",
+    "bor": "Mumindalen",
+    "adress": "",
+    "info": "Snorken är Snorkfrökens flitiga och uppfinningsrika bror. Han är mycket skicklig på att bygga nya maskiner och uppfinningar. Invånarna i Mumindalen ber ofta Snorken om hjälp med att lösa svåra problem."
+  },
+  {
+    "namn": "Too-ticki",
+    "bor": "Mumindalen",
+    "adress": "",
+    "info": "Too-ticki är muminfamiljens goda vän. Hon är mycket klok och har alltid förnuftiga och praktiska lösningar på olika problem. När det uppstår problem kavlar Too-ticki genast upp ärmarna och försöker hitta en lösning. Hon städar och hjälper mumintrollen att hålla ordning."
+  },
+  {
+    "namn": "Spöket på fasornas ö",
+    "bor": "Fasornas Ö",
+    "adress": "",
+    "info": "Spöket på fasornas ö försöker skrämma den unga Muminpappan. Det knakar i trapporna, sedan blir det kallt och kusligt. Men när spöket nyser och slår huvudet i dörrposten försvinner Muminpappans rädsla med ens. Han börjar skratta. Muminpappan tar tillfället i akt och försöker med hjälp av spöket skrämma resten av den Kungliga Laglösa Kolonin, det vill säga Mymlans dotter, Rådd-djuret och Joxaren, utan någon vidare effekt."
+  },
+  {
+    "namn": "Toft",
+    "bor": "Mumindalen",
+    "adress": "",
+    "info": "Toft är en liten Homsa med stora ögon och rufsigt hår. Han är blyg och tystlåten, och känner sig stundvis ensam. Toft bor under presenningen på Hemulens båt, där han ligger i en hoprullad tågrulle och berättar sig själv historier om Mumindalen. För att bättre kunna föreställa sig Mumindalen besluter han sig för att besöka den. Men hösten har redan kommit och alla Mumintroll har försvunnit. I Muminhuset hittar Toft en gammal och bok med långa ord, som han inte förstår mycket av. Han tror att boken är en berättelse, och skapar med hjälp av sin stora fantasi ett stort och aggressivt monster."
+  },
+  {
+    "namn": "Trollkarlen",
+    "bor": "Mumindalen",
+    "adress": "",
+    "info": "Trollkarlen bor på toppen av ett brant berg i världens ände i ett hus utan tack och fullt av ädelstenar. Varje kväll rider han sin svarta, flygande panter på jakt efter röda rubiner. Trollkarlen har magiska krafter och kan förvandla sig till vad som helst, men oftast är han en skäggig man med röda ögon, vita handskar, en mantel och en hatt att samla sina rubiner i."
+  },
+  {
+    "namn": "Muminmamman",
+    "bor": "Mumindalen",
+    "adress": "Muminhuset",
+    "info": "Muminmamman är en lugn och fridsam mamma som inte blir irriterad av småsaker. Hon ser till att det alltid råder en lugn och trygg stämning i Muminhuset – för familjemedlemmarna lika väl som för alla gäster."
+  },
+  {
+    "namn": "Primadonnans häst",
+    "bor": "Mumindalen",
+    "adress": "Mumincirkusen",
+    "info": "Primadonnans häst är Primadonnas talande cirkushäst som gärna ger kärleksråd till andra. Den har en svart, blommig päls och en vacker lång man."
+  },
+  {
+    "namn": "Hattifnattarna",
+    "bor": "Mumindalen",
+    "adress": "",
+    "info": "Hattifnattarna är vandrande varelser som ljudlöst rör sig i stora grupper. De är inte intresserade av något annat än av att vandra mot himlens rand – och när de är framme fortsätter de färden."
+  },
+  {
+    "namn": "Ninni, det osynliga barnet",
+    "bor": "Mumindalen",
+    "adress": "",
+    "info": "Ninni är ett osynligt barn med en silverbjällra kring halsen som avslöjar var hon rör sig. Ninni har blivit osynlig som en följd av att hon skrämts av en hemsk tant som tagit illa hand om henne. Tanten ger Ninni till Too-ticki, som i sin tur ber Muminfamiljen att ta hand om henne."
+  },
+  {
+    "namn": "Hemulen",
+    "bor": "Mumindalen",
+    "adress": "",
+    "info": "Hemulerna bor i Mumindalen och de älskar ordning. De tycker om att bestämma och väntar att alla regler följs till punkt och pricka. Men hemulerna är inte bra på att lyssna på andras åsikter och de har överhuvudtaget inget sinne för humor."
+  },
+  {
+    "namn": "Fyrvaktaren",
+    "bor": "Mumindalen",
+    "adress": "",
+    "info": "Fyrvaktaren bor ensam på ön där Muminfamiljen bosätter sig i Pappan och havet. Han är skygg och vill inte ha någonting med Muminfamiljen att göra. Dessutom är han livrädd för själva fyren! Till en början tror Muminfamiljen att fyrvaktaren är en ensam fiskare, och Lilla My misstänker att han äter sjögräs."
+  },
+  {
+    "namn": "Skogsungarna",
+    "bor": "Mumindalen",
+    "adress": "",
+    "info": "Skogsungarna är 24 stycken små och ludna borttappade eller glömda barn. De bor mot sin vilja i en park, vaktade av parkvakten och parktanten. Skogsungarna blir till sin glädje frisläppta av Snusmumriken i samband med att han hämnas på parkvakten. Snusmumriken tvingas ta hand om de små skogsungarna, som nu beundrande följer honom överallt."
+  },
+  {
+    "namn": "Misan",
+    "bor": "Mumindalen",
+    "adress": "",
+    "info": "Misan är en liten och känslig karaktär som tycker väldigt synd om sig själv. Hon har rakt, svart hår och mittbena. Misan känner sig ofta ensam och blir lätt illa berörd, även om det inte finns någon orsak till det. Sitt lynne har hon ärvt av sina föräldrar, mamman Miserabel och pappan Misären. Misan tycks trots allt trivas i sin olycka. Som allra lyckligast är hon när hon får spela primadonnan som möter ett tragiskt slut i Muminpappans skådespel."
+  },
+  {
+    "namn": "Herr Brisk",
+    "bor": "Mumindalen",
+    "adress": "",
+    "info": "Herr Brisk är en idrottsentusiast som älskar kallt väder och idrott framför allt annat. Han bär en ylletröja, mössa med tofs, trikåer och så gott som alltid ett brett leende på läpparna. Herr Brisk lär de motvilliga mumintrollen att skida, skrinna och vinterbada, utan vidare resultat. Trots att han bara bryr sig om idrott blir både Snorkfröken och Mymlan förtjusta i honom."
+  },
+  {
+    "namn": "Teaterråttan Emma",
+    "bor": "Mumindalen",
+    "adress": "",
+    "info": "Emma är en argsint, rynkig och grå teaterråtta. Hon träffar Muminfamiljen när de på grund av en översvämning tvingas flytta ut ur muminhuset. Emmas flytande teater får bli deras nya hem. Till en början möter Emma Muminfamiljen med misstro och håller sig undan. Hon klagar på att det bara serveras gröt och blir upprörd när det visar sig att Muminfamiljen inte vet något om teater. Motvilligt tar sig Emma an uppgiften att lära Muminfamiljen spela teater.  När det väl är dags för generalrepetition blir hon förvånansvärt lugn och tålmodig, trots att ingenting går som de ska."
+  },
+  {
+    "namn": "Tofslan och Vifslan",
+    "bor": "Mumindalen",
+    "adress": "",
+    "info": "Tofslan och Vifslan är oskiljaktiga och går alltid hand i hand. De pratar på ett så speciellt sätt att det bara var Hemulen som förstod vad de sa i början. Också Sniff tror att de talar ett främmande språk."
+  }
+]

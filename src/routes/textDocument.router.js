@@ -4,7 +4,7 @@
 const express = require("express");
 const router = express.Router();
 const db = require("./../db/database.js");
-const documentModel = require("./../db/models/document");
+const dbModel = require("./../db/models/document.model");
 const dbName = "textEditor";
 
 
@@ -16,7 +16,7 @@ router.route('/')
     .get(async (req, res) => {
         db.connectDb(dbName)
             .then(async () => {
-                let queryResult = await documentModel.Document.find({}).exec();
+                let queryResult = await dbModel.Document.find({}).exec();
 
                 return res.status(200).json(queryResult);
             })
@@ -34,7 +34,7 @@ router.route('/')
     .post(async (req, res) => {
         db.connectDb(dbName)
             .then(async connection => {
-                let result = await documentModel.Document.create({
+                let result = await dbModel.Document.create({
                     author: req.body.author,
                     title: req.body.title,
                     category: req.body.category,
@@ -66,7 +66,7 @@ router.route('/')
                     status: req.body.status
                 }
 
-                let result = await documentModel.Document.findByIdAndUpdate(req.body._id, updatedObject, { new: true });
+                let result = await dbModel.Document.findByIdAndUpdate(req.body._id, updatedObject, { new: true });
 
                 return res.status(204).send(result);
             })
@@ -84,7 +84,7 @@ router.route('/')
     .delete( async (req, res) => {
         db.connectDb(dbName)
             .then(async connection => {
-                let result = await documentModel.Document.findByIdAndRemove(req.body._id);
+                let result = await dbModel.Document.findByIdAndRemove(req.body._id);
 
                 return res.status(204).send(result);
             })

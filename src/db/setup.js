@@ -15,19 +15,18 @@ const config = require("./config.json");
  * Import setup information, set Model and set collection name
  * @type {{document: module:mongoose.Schema<Document, Model<DocType, any, any>, undefined, {}>, Document: Model<unknown>}|{Document?: Model<unknown>, document?: module:mongoose.Schema<Document, Model<DocType, any, any>, undefined, {}>}}
  */
-const dbName = "textEditor";
 
-const dbObjects = require('./setup_collections/setup_documents.json');
-const ModelObject = require('./models/document');
-const dbCollection = "documents";
+// const dbObjects = require('./setup_collections/setup_documents.json');
+// const dbModel = require('./models/document.model');
+// const dbCollection = "documents";
 
 // const dbObjects = require('./setup_collections/setup_mumin.json');
-// const ModelObject = require('./models/mumindalen');
+// const dbModel = require('./models/mumindalen.model');
 // const dbCollection = "mumindalen";
 
-// const dbObjects = require('./setup_collections/setup_users.json');
-// const ModelObject = require('./models/user');
-// const dbCollection = "users";
+const dbObjects = require('./setup_collections/setup_users.json');
+const dbModel = require('./models/user.model');
+const dbCollection = "users";
 
 
 /**
@@ -39,18 +38,26 @@ const dbCollection = "documents";
  *      Create database objects/documents.
  *      Close database connection.
  */
-async function resetDbCollection() {
-    // let dsn = `mongodb://localhost:27017/${dbName}`;
-    let dsn = `mongodb+srv://texteditor:${config.password}@${config.username}.c1ix7.mongodb.net/${dbName}?retryWrites=true&w=majority`;
+async function resetDbCollection(theCollection) {
+    let dbName = "textEditor";
+    // let dsn = `mongodb+srv://texteditor:${config.password}@${config.username}.c1ix7.mongodb.net/${dbName}?retryWrites=true&w=majority`;
+    let dsn = `mongodb://localhost:27017/${dbName}`;
 
     try {
         await mongoose.connect(dsn, {
             useNewUrlParser: true,
             useUnifiedTopology: true
         });
-        await mongoose.connection.collection(dbCollection).drop();
-        await mongoose.model(`${dbCollection}`, ModelObject.document);
-        await ModelObject.Document.create(dbObjects);
+        await mongoose.connection.collection(theCollection).drop();
+
+        if (dbCollection === "documents" || dbCollection === "mumindalen") {
+            await mongoose.model(`${theCollection}`, dbModel.document);
+            await dbModel.Document.create(dbObjects);
+        } else if (dbCollection === "users") {
+            await mongoose.model(`${theCollection}`, dbModel.user);
+            await dbModel.User.create(dbObjects);
+        }
+
         await mongoose.connection.close();
     } catch (error) {
         console.log(error.message);
@@ -66,3 +73,5 @@ try {
 } catch (e) {
     console.log(`Error: ${e.message}`)
 }
+
+module.exports = resetDbCollection

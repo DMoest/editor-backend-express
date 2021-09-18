@@ -1,0 +1,66 @@
+[
+  {
+    "firstname": "Daniel",
+    "lastname": "Andersson",
+    "contact": {
+      "email": "daniel@example.se",
+      "phone": "0700000001"
+    },
+    "adress": {
+      "adress": "Färnebogatan",
+      "adressnr": "16B",
+      "postnr": "72342",
+      "city": "Västerås",
+      "country": "Sweden"
+    },
+    "status": "created"
+  },
+  {
+    "firstname": "Natasha",
+    "lastname": "Asmarini",
+    "contact": {
+      "email": "tasha@example.se",
+      "phone": "0700000002"
+    },
+    "adress": {
+      "adress": "Färnebogatan",
+      "adressnr": "16B",
+      "postnr": "72342",
+      "city": "Västerås",
+      "country": "Sweden"
+    },
+    "status": "created"
+  },
+  {
+    "firstname": "Cerah",
+    "lastname": "Moest",
+    "contact": {
+      "email": "cerah@example.se",
+      "phone": "0700000003"
+    },
+    "adress": {
+      "adress": "Färnebogatan",
+      "adressnr": "16B",
+      "postnr": "72342",
+      "city": "Västerås",
+      "country": "Sweden"
+    },
+    "status": "created"
+  },
+  {
+    "firstname": "Hulu",
+    "lastname": "Andersson",
+    "contact": {
+      "email": "hulu@example.se",
+      "phone": "0700000003"
+    },
+    "adress": {
+      "adress": "Färnebogatan",
+      "adressnr": "16B",
+      "postnr": "72342",
+      "city": "Västerås",
+      "country": "Sweden"
+    },
+    "status": "created"
+  }
+]

@@ -14,18 +14,20 @@ const config = require('./config.json');
  * @param dsn
  */
 async function connectDb(databaseName) {
+    let dsn;
+
     if (process.env.NODE_ENV === 'test') {
-        this.dsn = "mongodb://localhost:27017/test";
+        dsn = "mongodb://localhost:27017/test";
     } else if (process.env.NODE_ENV === 'development') {
-        this.dsn = `mongodb://localhost:27017/${databaseName}`;
+        dsn = `mongodb://localhost:27017/${databaseName}`;
     } else if (process.env.NODE_ENV === 'production') {
-        this.dsn = `mongodb+srv://texteditor:${config.password}@${config.username}.c1ix7.mongodb.net/${databaseName}?retryWrites=true&w=majority`;
+        dsn = `mongodb+srv://texteditor:${config.password}@${config.username}.c1ix7.mongodb.net/${databaseName}?retryWrites=true&w=majority`;
     }
 
     console.log(`DSN set for: ${process.env.NODE_ENV}`);
 
     try {
-        return await mongoose.connect(`${this.dsn}`, {useNewUrlParser: true, useUnifiedTopology: true});
+        return await mongoose.connect(`${dsn}`, {useNewUrlParser: true, useUnifiedTopology: true});
     } catch(error) {
         return console.log(error);
     }

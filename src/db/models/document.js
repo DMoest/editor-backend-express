@@ -29,7 +29,10 @@ const document = new mongoose.Schema({
         type: String,
         required: true
     }
-}, { timestamps: true });
+}, {
+    timestamps: true,
+    collection: 'documents'
+});
 
 
 /**

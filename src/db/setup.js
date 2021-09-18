@@ -7,51 +7,36 @@
 /**
  * Import Module Dependencies and declare constants.
  */
-const mongo = require("mongodb").MongoClient;
-const config = require('./config.json');
+const mongoose = require("mongoose");
+const DocObject = require('./models/document');
+// const DocObject = require('./models/mumin');
+// const DocObject = require('./models/user');
 const docs = require('./setup_documents.json');
 
+// const config = require("./config.json");
+// const databaseName = "myFirstDatabase";
+const databaseName = "mumin";
 
-/**
- * DSN Adresses local and MongoDB server.
- * @type {string}
- */
-// const dsn = "mongodb://localhost:27017/documents";
-const dsn = `mongodb+srv://texteditor:${config.password}@${config.username}.c1ix7.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
-
-
-// Do it.
-resetCollection(dsn, "documents", docs)
-    .catch(err => console.log(err));
+const databaseCollection = "documents";
+// const databaseCollection = "mumin";
 
 
 /**
- * Reset a collection by removing existing content and insert a default
- * set of documents.
- *
- * @async
- *
- * @param {string} dsn     DSN to connect to database.
- * @param {string} colName Name of collection.
- * @param {string} doc     Documents to be inserted into collection.
- *
- * @throws Error when database operation fails.
- *
- * @return {Promise<void>} Void
+ * @function resetDatabase()
+ * @description IFFE to reset database collection.
+ *      Connect to database.
+ *      Drop collection.
+ *      Recreate collection.
+ *      Create database objects/documents.
+ *      Close database connection.
  */
-async function resetCollection(dsn, colName, doc) {
-    const client  = await mongo.connect(dsn);
-    const db = await client.db();
-    const col = await db.collection(colName);
+(async function resetDbCollection() {
+    let dsn = `mongodb://localhost:27017/${databaseName}`;
+    // let dsn = `mongodb+srv://texteditor:${config.password}@${config.username}.c1ix7.mongodb.net/${databaseName}?retryWrites=true&w=majority`;
 
-    await col.deleteMany();
-    await col.insertMany(doc);
-
-    await client.close();
-}
-
-
-/**
- * Module Exports.
- */
-module.exports = resetCollection;
+    await mongoose.connect(`${dsn}`);
+    await mongoose.connection.collection(`${databaseCollection}`).drop();
+    await mongoose.model(`${databaseCollection}`, DocObject.document);
+    await DocObject.Document.create(docs);
+    await mongoose.connection.close();
+})();

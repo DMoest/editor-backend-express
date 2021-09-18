@@ -15,8 +15,8 @@ const documentModel = require("./../db/models/document");
  */
 router.route('/')
     .get(async (req, res) => {
-        db.connectDb("documents")
-            .then(async connection => {
+        db.connectDb("mumin")
+            .then(async () => {
                 let queryResult = await documentModel.Document.find({}).exec();
 
                 return res.status(200).json(queryResult);
@@ -26,14 +26,14 @@ router.route('/')
                     errors: {
                         status: 500,
                         source: "/data",
-                        title: "Database error",
+                        title: "Database errors",
                         detail: error.message
                     }
                 });
             });
     })
     .post(async (req, res) => {
-        db.connectDb("documents")
+        db.connectDb("mumin")
             .then(async connection => {
                 let result = await documentModel.Document.create({
                     author: req.body.author,
@@ -57,7 +57,7 @@ router.route('/')
             });
     })
     .put(async (req, res) => {
-        db.connectDb("documents")
+        db.connectDb("mumin")
             .then(async connection => {
                 let updatedObject = {
                     author: req.body.author,
@@ -83,7 +83,7 @@ router.route('/')
             });
     })
     .delete( async (req, res) => {
-        db.connectDb("documents")
+        db.connectDb("mumin")
             .then(async connection => {
                 let result = await documentModel.Document.findByIdAndRemove(req.body._id);
 

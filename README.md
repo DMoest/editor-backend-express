@@ -12,17 +12,27 @@ If you are interested more in the course material please check out [the course w
 
 
 
-### Project setup
+### Install project dependencies
 ```
 npm install
 ```
 
-### Build project
+### Start application (production environment)
 ```
-npm run build
+npm run start 
 ```
 
-### Start project
+### Start application in development environment
 ```
-npm run start
+npm run development
+```
+
+### Start application in production environment
+```
+npm run development 
+```
+
+### Start application in testing environment
+```
+npm run test
 ```

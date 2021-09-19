@@ -7,8 +7,8 @@
       "phone": "0700000001"
     },
     "adress": {
-      "adress": "Färnebogatan",
-      "adressnr": "16B",
+      "street": "Färnebogatan",
+      "streetnr": "16B",
       "postnr": "72342",
       "city": "Västerås",
       "country": "Sweden"
@@ -23,8 +23,8 @@
       "phone": "0700000002"
     },
     "adress": {
-      "adress": "Färnebogatan",
-      "adressnr": "16B",
+      "street": "Färnebogatan",
+      "streetnr": "16B",
       "postnr": "72342",
       "city": "Västerås",
       "country": "Sweden"
@@ -39,8 +39,8 @@
       "phone": "0700000003"
     },
     "adress": {
-      "adress": "Färnebogatan",
-      "adressnr": "16B",
+      "street": "Färnebogatan",
+      "streetnr": "16B",
       "postnr": "72342",
       "city": "Västerås",
       "country": "Sweden"
@@ -55,8 +55,8 @@
       "phone": "0700000003"
     },
     "adress": {
-      "adress": "Färnebogatan",
-      "adressnr": "16B",
+      "street": "Färnebogatan",
+      "streetnr": "16B",
       "postnr": "72342",
       "city": "Västerås",
       "country": "Sweden"

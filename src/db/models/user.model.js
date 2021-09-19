@@ -29,11 +29,11 @@ const user = new mongoose.Schema({
         }
     },
     adress: {
-        adress: {
+        street: {
             type: String,
             required: false
         },
-        adressnr: {
+        streetnr: {
             type: String, // Can have for example 16B
             required: false
         },

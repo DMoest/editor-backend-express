@@ -38,12 +38,12 @@ router.route('/')
                     firstname: req.body.firstname,
                     lastname: req.body.lastname,
                     contact: {
+                        phone: req.body.phone,
                         email: req.body.email,
-                        phone: req.body.phone
                     },
                     adress: {
-                        adress: req.body.adress,
-                        adressnr: req.body.adressnr,
+                        street: req.body.street,
+                        streetnr: req.body.streetnr,
                         postnr: req.body.postnr,
                         city: req.body.city,
                         country: req.body.country
@@ -75,8 +75,8 @@ router.route('/')
                         phone: req.body.phone
                     },
                     adress: {
-                        adress: req.body.adress,
-                        adressnr: req.body.adressnr,
+                        street: req.body.street,
+                        streetnr: req.body.streetnr,
                         postnr: req.body.postnr,
                         city: req.body.city,
                         country: req.body.country

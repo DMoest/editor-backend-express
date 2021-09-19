@@ -40,8 +40,8 @@ const dbCollection = "users";
  */
 async function resetDbCollection(theCollection) {
     let dbName = "textEditor";
-    // let dsn = `mongodb+srv://texteditor:${config.password}@${config.username}.c1ix7.mongodb.net/${dbName}?retryWrites=true&w=majority`;
-    let dsn = `mongodb://localhost:27017/${dbName}`;
+    let dsn = `mongodb+srv://texteditor:${config.password}@${config.username}.c1ix7.mongodb.net/${dbName}?retryWrites=true&w=majority`;
+    // let dsn = `mongodb://localhost:27017/${dbName}`;
 
     try {
         await mongoose.connect(dsn, {

@@ -16,17 +16,17 @@ const config = require("./config.json");
  * @type {{document: module:mongoose.Schema<Document, Model<DocType, any, any>, undefined, {}>, Document: Model<unknown>}|{Document?: Model<unknown>, document?: module:mongoose.Schema<Document, Model<DocType, any, any>, undefined, {}>}}
  */
 
-// const dbObjects = require('./setup_collections/setup_documents.json');
-// const dbModel = require('./models/document.model');
-// const dbCollection = "documents";
+const dbObjects = require('./setup_collections/setup_documents.json');
+const dbModel = require('./models/document.model');
+const dbCollection = "documents";
 
 // const dbObjects = require('./setup_collections/setup_mumin.json');
 // const dbModel = require('./models/mumindalen.model');
 // const dbCollection = "mumindalen";
 
-const dbObjects = require('./setup_collections/setup_users.json');
-const dbModel = require('./models/user.model');
-const dbCollection = "users";
+// const dbObjects = require('./setup_collections/setup_users.json');
+// const dbModel = require('./models/user.model');
+// const dbCollection = "users";
 
 
 /**

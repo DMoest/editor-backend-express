@@ -102,6 +102,31 @@ router.route('/')
 
 
 /**
+ *
+ */
+router.route('/:id')
+    .get(async (req, res) => {
+        db.connectDb(dbName)
+            .then(async () => {
+                let queryResult = await dbModel.Document.findById(req.params.id).exec();
+
+                console.log(queryResult);
+
+                return res.status(200).json(queryResult);
+            })
+            .catch(error => {
+                return res.status(500).json({
+                    errors: {
+                        status: 500,
+                        source: "/data/find",
+                        title: "Database errors",
+                        detail: error.message
+                    }
+                });
+            });
+    })
+
+/**
  * Module Exports.
  */
 module.exports = router;

@@ -24,7 +24,7 @@ async function connectDb(databaseName) {
         dsn = `mongodb+srv://texteditor:${config.password}@${config.username}.c1ix7.mongodb.net/${databaseName}?retryWrites=true&w=majority`;
     }
 
-    console.log(`DSN set for: ${process.env.NODE_ENV}`);
+    // console.log(`DSN set for: ${process.env.NODE_ENV}`);
 
     try {
         return await mongoose.connect(`${dsn}`, {useNewUrlParser: true, useUnifiedTopology: true});

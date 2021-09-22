@@ -5,6 +5,7 @@ const express = require("express");
 const router = express.Router();
 const db = require("./../db/database.js");
 const dbModel = require("./../db/models/document.model");
+const dbErrorHandler = require('./../db/dbErrorHandler.js');
 const dbName = "textEditor";
 
 
@@ -20,16 +21,7 @@ router.route('/')
 
                 return res.status(200).json(queryResult);
             })
-            .catch(error => {
-                return res.status(500).json({
-                    errors: {
-                        status: 500,
-                        source: "/data",
-                        title: "Database errors",
-                        detail: error.message
-                    }
-                });
-            });
+            .catch(error => dbErrorHandler(res, error));
     })
     .post(async (req, res) => {
         db.connectDb(dbName)
@@ -44,16 +36,7 @@ router.route('/')
 
                 return res.status(201).json(result);
             })
-            .catch(error => {
-                return res.status(500).json({
-                    errors: {
-                        status: 500,
-                        source: "/data",
-                        title: "Database error",
-                        detail: error.message
-                    }
-                });
-            });
+            .catch(error => dbErrorHandler(res, error));
     })
     .put(async (req, res) => {
         db.connectDb(dbName)
@@ -70,16 +53,7 @@ router.route('/')
 
                 return res.status(204).send(result);
             })
-            .catch(error => {
-                return res.status(500).json({
-                    errors: {
-                        status: 500,
-                        source: "/data",
-                        title: "Database error",
-                        detail: error.message
-                    }
-                });
-            });
+            .catch(error => dbErrorHandler(res, error));
     })
     .delete( async (req, res) => {
         db.connectDb(dbName)
@@ -88,43 +62,27 @@ router.route('/')
 
                 return res.status(204).send(result);
             })
-            .catch(error => {
-                return res.status(500).json({
-                    errors: {
-                        status: 500,
-                        source: "/data",
-                        title: "Database error",
-                        detail: error.message
-                    }
-                });
-            });
+            .catch(error => dbErrorHandler(res, error));
     });
 
 
 /**
- *
+ * Search route for documents in database. Searching for document._id in database collection.
  */
 router.route('/:id')
     .get(async (req, res) => {
         db.connectDb(dbName)
             .then(async () => {
-                let queryResult = await dbModel.Document.findById(req.params.id).exec();
+                let result = await dbModel.Document.findById(req.params.id).exec();
 
-                console.log(queryResult);
+                console.log(result);
 
-                return res.status(200).json(queryResult);
+                return res.status(200).json(result);
             })
-            .catch(error => {
-                return res.status(500).json({
-                    errors: {
-                        status: 500,
-                        source: "/data/find",
-                        title: "Database errors",
-                        detail: error.message
-                    }
-                });
-            });
+            .catch(error => dbErrorHandler(res, error));
     })
+
+
 
 /**
  * Module Exports.

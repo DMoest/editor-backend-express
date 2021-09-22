@@ -14,12 +14,6 @@ const app = express()
 
 
 /**
- * Port.
- */
-const port = process.env.PORT || 1337
-
-
-/**
  * Import Route Modules
  */
 const indexRoutes = require('./src/routes/index.router.js');
@@ -89,10 +83,7 @@ app.use((err, req, res, next) => {
 
 
 /**
- * Start function.
+ * Module Exports.
+ * @type {Express}
  */
-console.log('Node Environment: ', process.env.NODE_ENV);
-
-app.listen(port, () => {
-    console.log('Server is listening on port: ', port)
-});
+module.exports = app;

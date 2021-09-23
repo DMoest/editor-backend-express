@@ -2,7 +2,13 @@
  * Import Module Dependencies.
  */
 const mongoose = require("mongoose");
-const config = require('./config.json');
+let config;
+
+try {
+    config = require('./config.json');
+} catch (error) {
+    console.log('Config Require Error: ', error)
+}
 
 
 /**
@@ -16,10 +22,13 @@ const config = require('./config.json');
 async function connectDb(databaseName) {
     let dsn;
 
+    // eslint-disable-next-line no-undef
     if (process.env.NODE_ENV === 'test') {
         dsn = "mongodb://localhost:27017/test";
+        // eslint-disable-next-line no-undef
     } else if (process.env.NODE_ENV === 'development') {
         dsn = `mongodb://localhost:27017/${databaseName}`;
+        // eslint-disable-next-line no-undef
     } else if (process.env.NODE_ENV === 'production') {
         dsn = `mongodb+srv://texteditor:${config.password}@${config.username}.c1ix7.mongodb.net/${databaseName}?retryWrites=true&w=majority`;
     }

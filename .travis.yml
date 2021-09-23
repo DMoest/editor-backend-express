@@ -3,6 +3,9 @@ language: node_js
 node_js:
   - "node"
   - "14"
+  - "12"
+
+services: mongodb
 
 sudo: false
 
@@ -13,4 +16,4 @@ before_script:
   - npm install
 
 script:
-  - npm test
+  - npm run test

@@ -30,6 +30,19 @@ describe(`Test Request Routes on ${testRoute}`, () => {
     });
 
 
+    /**
+     * Test for a failed GET request with false params are sent to trigger a search for ID that fails.
+     */
+    describe(`Test the ${testRoute} with a failing GET request.`, () => {
+        test(`Should respond with a error message.`, async () => {
+            const res = await request(app)
+                .get(`${testRoute}/123`)
+
+            expect(typeof res).toBe('object');
+            expect(res.statusCode).toBe(500);
+        })
+    })
+
 
     /**
      * Test POST Request to add test object to database.
@@ -57,6 +70,12 @@ describe(`Test Request Routes on ${testRoute}`, () => {
             expect(res.body).toHaveProperty('createdAt')
             expect(res.body).toHaveProperty('updatedAt')
 
+            expect(typeof res.body.author).toBe('string')
+            expect(typeof res.body.title).toBe('string')
+            expect(typeof res.body.category).toBe('string')
+            expect(typeof res.body.text).toBe('string')
+            expect(typeof res.body.status).toBe('string')
+
             expect(res.body.author).toEqual("TestAuthor")
             expect(res.body.title).toBe("TestTitle")
             expect(res.body.category).toBe("TestCategory")
@@ -69,6 +88,25 @@ describe(`Test Request Routes on ${testRoute}`, () => {
             await request(app)
                 .delete(testRoute)
                 .send({_id: res.body._id});
+        })
+    })
+
+
+    /**
+     * Test for a failed POST request where required fields are missing.
+     */
+    describe(`Test the ${testRoute} with a failing GET request.`, () => {
+        test(`Should respond with a error message.`, async () => {
+            const res = await request(app)
+                .post(`${testRoute}`)
+                .send({
+                    author: "failing test..",
+                    category: "failing test..",
+                    text: "failing test.."
+                })
+
+            expect(typeof res).toBe('object');
+            expect(res.statusCode).toBe(500);
         })
     })
 

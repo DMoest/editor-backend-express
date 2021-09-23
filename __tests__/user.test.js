@@ -100,7 +100,21 @@ describe(`Test Request Routes on ${testRoute}`, () => {
 
 
     /**
-     * Test PUT Request .
+     * Test for a failed GET request false params are sent to trigger a search for ID.
+     */
+    describe(`Test the ${testRoute} with a failing GET request.`, () => {
+        test(`Should respond with a error message.`, async () => {
+            const res = await request(app)
+                .get(`${testRoute}/123`)
+
+            expect(typeof res).toBe('object');
+            expect(res.statusCode).toBe(500);
+        })
+    })
+
+
+    /**
+     * Test PUT Request for updating objects in database.
      */
     describe(`Test the ${testRoute} path for PUT request.`, () => {
         it(`Should respond the PUT request on route ${testRoute}`, async () => {
@@ -160,6 +174,24 @@ describe(`Test Request Routes on ${testRoute}`, () => {
             await request(app)
                 .delete(testRoute)
                 .send({_id: res_insert_object.body._id});
+        })
+    })
+
+
+    /**
+     * Test for a failed POST request where required fields are missing.
+     */
+    describe(`Test the ${testRoute} with a failing GET request.`, () => {
+        test(`Should respond with a error message.`, async () => {
+            const res = await request(app)
+                .post(`${testRoute}`)
+                .send({
+                    lastname: "failing test..",
+                    email: "failing test.."
+                })
+
+            expect(typeof res).toBe('object');
+            expect(res.statusCode).toBe(500);
         })
     })
 

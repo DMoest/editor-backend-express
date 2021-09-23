@@ -120,6 +120,30 @@ router.route('/')
 
 
 /**
+ * Route Handlers to search for user with id.
+ */
+router.route('/:id')
+    .get(async (req, res) => {
+        db.connectDb(dbName)
+            .then(async connection => {
+                let result = await dbModel.User.findById(req.params.id).exec();
+
+                return res.status(200).json(result);
+            })
+            .catch(error => {
+                return res.status(500).json({
+                    errors: {
+                        status: 500,
+                        source: "/user",
+                        title: "Database error",
+                        detail: error.message
+                    }
+                });
+            });
+    })
+
+
+/**
  * Module Exports.
  */
 module.exports = router;

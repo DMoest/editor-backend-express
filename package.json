@@ -9,7 +9,7 @@
     "dev": "NODE_ENV='development' nodemon server.js",
     "dev-test": "NODE_ENV='test' && jest --watch",
     "production": "NODE_ENV='production' node server.js",
-    "test": "NODE_ENV='test' && jest",
+    "test": "NODE_ENV='test' && jest --silent",
     "start": "NODE_ENV='production' node server.js"
   },
   "keywords": [

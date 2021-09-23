@@ -6,7 +6,7 @@ function dbRequestErrorHandler(response, error) {
         errors: {
             status: 500,
             source: "/",
-            title: "Database error",
+            title: "Database Error",
             detail: error.message
         }
     });

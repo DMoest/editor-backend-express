@@ -5,7 +5,7 @@ const express = require("express");
 const router = express.Router();
 const db = require('./../db/database.js');
 const dbModel = require('./../db/models/user.model');
-const docs = require('../db/setup_collections/setup_users.json');
+const dbErrorHandler = require('./../db/dbErrorHandler.js');
 const dbName = "textEditor";
 
 
@@ -20,16 +20,7 @@ router.route('/')
 
                 return res.status(200).json(result);
             })
-            .catch(error => {
-                return res.status(500).json({
-                    errors: {
-                        status: 500,
-                        source: "/user",
-                        title: "Database error",
-                        detail: error.message
-                    }
-                });
-            });
+            .catch(error => dbErrorHandler(res, error));
     })
     .post(async (req, res) => {
         db.connectDb(dbName)
@@ -53,16 +44,7 @@ router.route('/')
 
                 return res.status(201).json(result);
             })
-            .catch(error => {
-                return res.status(500).json({
-                    errors: {
-                        status: 500,
-                        source: "/user",
-                        title: "Database error",
-                        detail: error.message
-                    }
-                });
-            });
+            .catch(error => dbErrorHandler(res, error));
     })
     .put(async (req, res) => {
         db.connectDb(dbName)
@@ -88,16 +70,7 @@ router.route('/')
 
                 return res.status(204).send(result);
             })
-            .catch(error => {
-                return res.status(500).json({
-                    errors: {
-                        status: 500,
-                        source: "/user",
-                        title: "Database error",
-                        detail: error.message
-                    }
-                });
-            });
+            .catch(error => dbErrorHandler(res, error));
     })
     .delete( async (req, res) => {
         db.connectDb(dbName)
@@ -106,16 +79,7 @@ router.route('/')
 
                 return res.status(204).send(result);
             })
-            .catch(error => {
-                return res.status(500).json({
-                    errors: {
-                        status: 500,
-                        source: "/user",
-                        title: "Database error",
-                        detail: error.message
-                    }
-                });
-            });
+            .catch(error => dbErrorHandler(res, error));
     });
 
 
@@ -130,16 +94,7 @@ router.route('/:id')
 
                 return res.status(200).json(result);
             })
-            .catch(error => {
-                return res.status(500).json({
-                    errors: {
-                        status: 500,
-                        source: "/user",
-                        title: "Database error",
-                        detail: error.message
-                    }
-                });
-            });
+            .catch(error => dbErrorHandler(res, error));
     })
 
 

@@ -54,7 +54,12 @@ describe(`Test Request Routes on ${testRoute}`, () => {
             expect(res.body).toHaveProperty('createdAt')
             expect(res.body).toHaveProperty('updatedAt')
 
-            expect(res.body.namn).toEqual("Testperson")
+            expect(typeof res.body.namn).toBe('string')
+            expect(typeof res.body.bor).toBe('string')
+            expect(typeof res.body.adress).toBe('string')
+            expect(typeof res.body.info).toBe('string')
+
+            expect(res.body.namn).toBe("Testperson")
             expect(res.body.bor).toBe("Testcity")
             expect(res.body.adress).toBe("Teststreet")
             expect(res.body.info).toBe("Testinformation")
@@ -145,7 +150,7 @@ describe(`Test Request Routes on ${testRoute}`, () => {
              * - assert the status code for delete matches expected.
              * -
              */
-            expect(res1.statusCode).toEqual(201)
+            expect(res1.statusCode).toBe(201);
             expect(res2.statusCode).toBe(204);
         })
     })

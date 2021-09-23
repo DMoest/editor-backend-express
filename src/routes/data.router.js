@@ -16,7 +16,7 @@ const dbName = "textEditor";
 router.route('/')
     .get(async (req, res) => {
         db.connectDb(dbName)
-            .then(async connection => {
+            .then(async () => {
                 let result = await dbModel.Document.find({}).exec();
 
                 return res.status(200).json(result);
@@ -25,7 +25,7 @@ router.route('/')
     })
     .post(async (req, res) => {
         db.connectDb(dbName)
-            .then(async connection => {
+            .then(async () => {
                 let result = await dbModel.Document.create({
                     namn: req.body.namn,
                     bor: req.body.bor,
@@ -39,7 +39,7 @@ router.route('/')
     })
     .put(async (req, res) => {
         db.connectDb(dbName)
-            .then(async connection => {
+            .then(async () => {
                 let updatedObject = {
                     namn: req.body.namn,
                     bor: req.body.bor,
@@ -55,7 +55,7 @@ router.route('/')
     })
     .delete( async (req, res) => {
         db.connectDb(dbName)
-            .then(async connection => {
+            .then(async () => {
                 let result = await dbModel.Document.findByIdAndRemove(req.body._id);
 
                 return res.status(204).send(result);

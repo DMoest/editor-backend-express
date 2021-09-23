@@ -25,7 +25,7 @@ router.route('/')
     })
     .post(async (req, res) => {
         db.connectDb(dbName)
-            .then(async connection => {
+            .then(async () => {
                 let result = await dbModel.Document.create({
                     author: req.body.author,
                     title: req.body.title,
@@ -40,7 +40,7 @@ router.route('/')
     })
     .put(async (req, res) => {
         db.connectDb(dbName)
-            .then(async connection => {
+            .then(async () => {
                 let updatedObject = {
                     author: req.body.author,
                     title: req.body.title,
@@ -57,7 +57,7 @@ router.route('/')
     })
     .delete( async (req, res) => {
         db.connectDb(dbName)
-            .then(async connection => {
+            .then(async () => {
                 let result = await dbModel.Document.findByIdAndRemove(req.body._id);
 
                 return res.status(204).send(result);

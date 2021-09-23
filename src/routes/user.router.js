@@ -15,7 +15,7 @@ const dbName = "textEditor";
 router.route('/')
     .get(async (req, res) => {
         db.connectDb(dbName)
-            .then(async connection => {
+            .then(async () => {
                 let result = await dbModel.User.find({}).exec();
 
                 return res.status(200).json(result);
@@ -24,7 +24,7 @@ router.route('/')
     })
     .post(async (req, res) => {
         db.connectDb(dbName)
-            .then(async connection => {
+            .then(async () => {
                 let result = await dbModel.User.create({
                     firstname: req.body.firstname,
                     lastname: req.body.lastname,
@@ -48,7 +48,7 @@ router.route('/')
     })
     .put(async (req, res) => {
         db.connectDb(dbName)
-            .then(async connection => {
+            .then(async () => {
                 let updatedObject = {
                     firstname: req.body.firstname,
                     lastname: req.body.lastname,
@@ -74,7 +74,7 @@ router.route('/')
     })
     .delete( async (req, res) => {
         db.connectDb(dbName)
-            .then(async connection => {
+            .then(async () => {
                 let result = await dbModel.User.findByIdAndRemove(req.body._id);
 
                 return res.status(204).send(result);
@@ -89,7 +89,7 @@ router.route('/')
 router.route('/:id')
     .get(async (req, res) => {
         db.connectDb(dbName)
-            .then(async connection => {
+            .then(async () => {
                 let result = await dbModel.User.findById(req.params.id).exec();
 
                 return res.status(200).json(result);

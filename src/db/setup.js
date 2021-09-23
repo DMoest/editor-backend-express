@@ -64,7 +64,7 @@ async function resetDbCollection(theCollection) {
     } finally {
         await mongoose.connection.close();
     }
-};
+}
 
 
 

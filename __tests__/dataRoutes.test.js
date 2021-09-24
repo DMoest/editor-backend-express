@@ -8,6 +8,7 @@ const testDb = require('../__mocks__/database.mock');
 const dbModel = require('./../src/db/models/mumindalen.model');
 const testMock = require('../__mocks__/data.mock');
 const testObjects = testMock.getTestObjects();
+const newTestObject = testMock.getNewTestObject();
 const testObjectsFailing = testMock.getTestObjectsFailing()
 
 
@@ -23,7 +24,7 @@ describe(`TestSuit: Tests all the CRUD requests on route('${testRoute}')`, () =>
      */
     beforeEach(async () => {
         console.log(`Before each test case for ${testRoute} -> connect to test database.`)
-        // Should connect to test database and insert some object to test for...
+        // Should connect to test database and insert some objects for testing purposes...
 
         await testDb.connectToTestDb()
         await dbModel.Document.create(testObjects);
@@ -35,7 +36,7 @@ describe(`TestSuit: Tests all the CRUD requests on route('${testRoute}')`, () =>
      */
     afterEach(async () => {
         console.log(`After each test case for  ${testRoute}`)
-        // Should teardown test database
+        // Should close connection and teardown test database to prevent open handles
 
         await testDb.dropTestDb()
     })
@@ -110,12 +111,7 @@ describe(`TestSuit: Tests all the CRUD requests on route('${testRoute}')`, () =>
          */
         test(`Test -> Should respond to a POST('${testRoute}') request that returns a JSON object containing a success status code 201.`, async () => {
             let response = await request(app)
-                .post(testRoute).send({
-                    namn: "Testperson4",
-                    bor: "Testcity4",
-                    adress: "Teststreet4",
-                    info: "Testinformation4"
-                })
+                .post(testRoute).send(newTestObject)
 
             expect(response.statusCode).toBe(201);
             expect(response.headers['content-type']).toEqual(expect.stringContaining('json'));
@@ -127,12 +123,7 @@ describe(`TestSuit: Tests all the CRUD requests on route('${testRoute}')`, () =>
          */
         test(`Test -> Should respond to POST request. Response object body should contain expected properties. `, async () => {
             let response = await request(app)
-                .post(testRoute).send({
-                    namn: "Testperson4",
-                    bor: "Testcity4",
-                    adress: "Teststreet4",
-                    info: "Testinformation4"
-                })
+                .post(testRoute).send(newTestObject)
 
                 expect(response.body).toHaveProperty('_id')
                 expect(response.body).toHaveProperty('namn')
@@ -149,12 +140,7 @@ describe(`TestSuit: Tests all the CRUD requests on route('${testRoute}')`, () =>
          */
         test(`Test -> Should respond to POST request. Response object body properties should be of expected type. `, async () => {
             let response = await request(app)
-                .post(testRoute).send({
-                    namn: "Testperson4",
-                    bor: "Testcity4",
-                    adress: "Teststreet4",
-                    info: "Testinformation4"
-                })
+                .post(testRoute).send(newTestObject)
 
                 expect(typeof response.body.namn).toBe('string')
                 expect(typeof response.body.bor).toBe('string')
@@ -168,12 +154,7 @@ describe(`TestSuit: Tests all the CRUD requests on route('${testRoute}')`, () =>
          */
         test(`Test -> Should respond to POST request. Response object body properties should contain expected data. `, async () => {
             let response = await request(app)
-                .post(testRoute).send({
-                    namn: "Testperson4",
-                    bor: "Testcity4",
-                    adress: "Teststreet4",
-                    info: "Testinformation4"
-                })
+                .post(testRoute).send(newTestObject)
 
                 expect(response.body.namn).toBe("Testperson4")
                 expect(response.body.bor).toBe("Testcity4")
@@ -186,7 +167,6 @@ describe(`TestSuit: Tests all the CRUD requests on route('${testRoute}')`, () =>
          * Test POST requests for failing response status code on sending multiple of invalid request body combinations.
          */
         test(`Test -> Should respond failing to POST request due to invalid request bodies. Response status code expected to be 500. `, async () => {
-
             for (let object in testObjectsFailing) {
                 let response = await request(app)
                     .post(testRoute).send(object)

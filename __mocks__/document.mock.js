@@ -10,22 +10,25 @@
  */
 const testObjects = [
     {
-        namn: "Testperson1",
-        bor: "Testcity1",
-        adress: "Teststreet1",
-        info: "Testinformation1"
+        author: "TestAuthor1",
+        title: "TestTitle1",
+        category: "TestCategory1",
+        text: "TestTextInput1",
+        status: "created"
     },
     {
-        namn: "Testperson2",
-        bor: "Testcity2",
-        adress: "Teststreet2",
-        info: "Testinformation2"
+        author: "TestAuthor2",
+        title: "TestTitle2",
+        category: "TestCategory2",
+        text: "TestTextInput2",
+        status: "created"
     },
     {
-        namn: "Testperson3",
-        bor: "Testcity3",
-        adress: "Teststreet3",
-        info: "Testinformation3"
+        author: "TestAuthor3",
+        title: "TestTitle3",
+        category: "TestCategory3",
+        text: "TestTextInput3",
+        status: "created"
     }
 ]
 
@@ -35,10 +38,11 @@ const testObjects = [
  * @type {{author: string, text: string, title: string, category: string, status: string}}
  */
 const newTestObject = {
-    namn: "Testperson4",
-    bor: "Testcity4",
-    adress: "Teststreet4",
-    info: "Testinformation4"
+    author: "TestAuthor4",
+    title: "TestTitle4",
+    category: "TestCategory4",
+    text: "TestTextInput4",
+    status: "created"
 }
 
 
@@ -48,24 +52,24 @@ const newTestObject = {
  */
 const testObjectsFailing = [
     {
-        namn: "Testperson_not_complete_1",
-        adress: "Teststreet_not_complete_1",
-        info: "Testinformation_not_complete_1"
+        title: "TestTitle1",
+        category: "TestCategory1",
+        text: "TestTextInput1"
     },
     {
-        bor: "Testcity_not_complete_2",
-        adress: "Teststreet_not_complete_2",
-        info: "Testinformation_not_complete_2"
+        author: "TestAuthor2",
+        category: "TestCategory2",
+        text: "TestTextInput2"
     },
     {
-        adress: "Teststreet_not_complete_3",
-        info: "Testinformation_not_complete_3"
+        category: "TestCategory3",
+        text: "TestTextInput3"
     }
 ]
 
 
 /**
- * @description Getter function to return a test object.
+ * Getter function to return a test object.
  * @return {{bor: string, namn: string, adress: string, info: string}}
  */
 function getTestObjects() {

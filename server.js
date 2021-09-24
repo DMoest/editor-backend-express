@@ -13,12 +13,14 @@ const app = require('./app.js');
 /**
  * Port.
  */
+// eslint-disable-next-line no-undef
 const port = process.env.PORT || 1337;
 
 
 /**
  * Start application on port.
  */
+// eslint-disable-next-line no-undef
 console.log('Node Environment: ', process.env.NODE_ENV);
 
 app.listen(port, () => {

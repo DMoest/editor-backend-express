@@ -1,3 +1,7 @@
+[![Build Status](https://app.travis-ci.com/DMoest/editor-backend-express.svg?branch=main)](https://app.travis-ci.com/DMoest/editor-backend-express)  
+
+
+
 # Text Editor Backend - Node.js, Express.js & MongoDB
 
 This repository is a part of the course JSRamverk at Blekinge Institute of Technology (BTH).
@@ -25,14 +29,26 @@ npm run start
 ### Start application in development environment
 ```
 npm run development
+or
+npm run dev
 ```
 
 ### Start application in production environment
 ```
-npm run development 
+npm run production
 ```
 
-### Start application in testing environment
+### Run tests for application
 ```
 npm run test
+```
+
+### Start application in testing development environment
+```
+npm run test-dev
+```
+
+### Run Eslint on application for static code analysis.
+```
+npm run lint
 ```

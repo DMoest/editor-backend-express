@@ -19,7 +19,7 @@ const app = express()
 const indexRoutes = require('./src/routes/index.router.js');
 const userRoutes = require('./src/routes/user.router.js');
 const dataRoutes = require('./src/routes/data.router.js');
-const textDocumentRoutes = require('./src/routes/textDocument.router.js');
+const documentRoutes = require('./src/routes/document.router.js');
 
 
 /**
@@ -34,6 +34,7 @@ app.use(cors());
  * Use morgan to log at command line.
  * 'combined' outputs the Apache style LOGs.
  */
+// eslint-disable-next-line no-undef
 if (process.env.NODE_ENV !== 'test') {
     app.use(morgan('combined'));
 }
@@ -53,7 +54,7 @@ app.use((req, res, next) => {
 app.use('/', indexRoutes);
 app.use('/user', userRoutes);
 app.use('/data', dataRoutes);
-app.use('/document', textDocumentRoutes);
+app.use('/document', documentRoutes);
 
 
 /**

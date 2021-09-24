@@ -2,15 +2,14 @@
  * Import Test Module Dependencies.
  */
 const request = require("supertest");
-const app = require("../app");
-const testRoute = "/document";
+const app = require("../../app");
+const testRoute = "/data";
 const testObject = {
-    author: "TestAuthor",
-    title: "TestTitle",
-    category: "TestCategory",
-    text: "TestLineOfText",
-    status: "Testing"
-}
+    namn: "Testperson",
+    bor: "Testcity",
+    adress: "Teststreet",
+    info: "Testinformation"
+};
 
 
 describe(`Test Request Routes on ${testRoute}`, () => {
@@ -44,6 +43,7 @@ describe(`Test Request Routes on ${testRoute}`, () => {
     })
 
 
+
     /**
      * Test POST Request to add test object to database.
      */
@@ -62,25 +62,22 @@ describe(`Test Request Routes on ${testRoute}`, () => {
             expect(res.statusCode).toEqual(201)
 
             expect(res.body).toHaveProperty('_id')
-            expect(res.body).toHaveProperty('author')
-            expect(res.body).toHaveProperty('title')
-            expect(res.body).toHaveProperty('category')
-            expect(res.body).toHaveProperty('text')
-            expect(res.body).toHaveProperty('status')
+            expect(res.body).toHaveProperty('namn')
+            expect(res.body).toHaveProperty('bor')
+            expect(res.body).toHaveProperty('adress')
+            expect(res.body).toHaveProperty('info')
             expect(res.body).toHaveProperty('createdAt')
             expect(res.body).toHaveProperty('updatedAt')
 
-            expect(typeof res.body.author).toBe('string')
-            expect(typeof res.body.title).toBe('string')
-            expect(typeof res.body.category).toBe('string')
-            expect(typeof res.body.text).toBe('string')
-            expect(typeof res.body.status).toBe('string')
+            expect(typeof res.body.namn).toBe('string')
+            expect(typeof res.body.bor).toBe('string')
+            expect(typeof res.body.adress).toBe('string')
+            expect(typeof res.body.info).toBe('string')
 
-            expect(res.body.author).toEqual("TestAuthor")
-            expect(res.body.title).toBe("TestTitle")
-            expect(res.body.category).toBe("TestCategory")
-            expect(res.body.text).toBe("TestLineOfText")
-
+            expect(res.body.namn).toBe("Testperson")
+            expect(res.body.bor).toBe("Testcity")
+            expect(res.body.adress).toBe("Teststreet")
+            expect(res.body.info).toBe("Testinformation")
 
             /**
              * Remove object from test database.
@@ -100,9 +97,9 @@ describe(`Test Request Routes on ${testRoute}`, () => {
             const res = await request(app)
                 .post(`${testRoute}`)
                 .send({
-                    author: "failing test..",
-                    category: "failing test..",
-                    text: "failing test.."
+                    namn: "failing test..",
+                    adress: "failing test..",
+                    info: "failing test.."
                 })
 
             expect(typeof res).toBe('object');
@@ -112,7 +109,7 @@ describe(`Test Request Routes on ${testRoute}`, () => {
 
 
     /**
-     * PUT Request expected to be failed due to no request body.
+     * Test PUT Request .
      */
     describe(`Test the ${testRoute} path for PUT request.`, () => {
         it(`Should respond the PUT request on route ${testRoute}`, async () => {
@@ -124,12 +121,13 @@ describe(`Test Request Routes on ${testRoute}`, () => {
                 .put(testRoute)
                 .send({
                     _id: res_insert_object.body._id,
-                    author: "TestAuthor_Updated",
-                    title: "TestTitle_Updated",
-                    category: "TestCategory_Updated",
-                    text: "TestLineOfText_Updated",
-                    status: "Testing_Updated"
+                    namn: "Testperson_updated",
+                    bor: "Testcity_updated",
+                    adress: "Teststreet_updated",
+                    info: "Testinformation_updated"
                 })
+
+            console.log("res_update_object.statusCode: ", res_update_object.statusCode)
 
             const res_get_updated_object = await request(app)
                 .get(`${testRoute}/${res_insert_object.body._id}`)
@@ -143,20 +141,18 @@ describe(`Test Request Routes on ${testRoute}`, () => {
             expect(res_insert_object.statusCode).toEqual(201)
             expect(res_update_object.statusCode).toEqual(204)
 
-            // expect(res_get_updated_object.body).toHaveProperty('_id')
-            expect(res_get_updated_object.body).toHaveProperty('author')
-            expect(res_get_updated_object.body).toHaveProperty('title')
-            expect(res_get_updated_object.body).toHaveProperty('category')
-            expect(res_get_updated_object.body).toHaveProperty('text')
-            expect(res_get_updated_object.body).toHaveProperty('status')
+            expect(res_get_updated_object.body).toHaveProperty('_id')
+            expect(res_get_updated_object.body).toHaveProperty('namn')
+            expect(res_get_updated_object.body).toHaveProperty('bor')
+            expect(res_get_updated_object.body).toHaveProperty('adress')
+            expect(res_get_updated_object.body).toHaveProperty('info')
             expect(res_get_updated_object.body).toHaveProperty('createdAt')
             expect(res_get_updated_object.body).toHaveProperty('updatedAt')
 
-            expect(res_get_updated_object.body.author).toEqual("TestAuthor_Updated")
-            expect(res_get_updated_object.body.title).toBe("TestTitle_Updated")
-            expect(res_get_updated_object.body.category).toBe("TestCategory_Updated")
-            expect(res_get_updated_object.body.text).toBe("TestLineOfText_Updated")
-            expect(res_get_updated_object.body.status).toBe("Testing_Updated")
+            expect(res_get_updated_object.body.namn).toEqual("Testperson_updated")
+            expect(res_get_updated_object.body.bor).toBe("Testcity_updated")
+            expect(res_get_updated_object.body.adress).toBe("Teststreet_updated")
+            expect(res_get_updated_object.body.info).toBe("Testinformation_updated")
 
 
             /**
@@ -188,7 +184,7 @@ describe(`Test Request Routes on ${testRoute}`, () => {
              * - assert the status code for delete matches expected.
              * -
              */
-            expect(res1.statusCode).toEqual(201)
+            expect(res1.statusCode).toBe(201);
             expect(res2.statusCode).toBe(204);
         })
     })

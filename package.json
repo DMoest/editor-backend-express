@@ -9,8 +9,8 @@
     "development": "NODE_ENV='development' nodemon server.js",
     "dev": "NODE_ENV='development' nodemon server.js",
     "production": "NODE_ENV='production' node server.js",
-    "test-dev": "NODE_ENV='test' && jest --watch",
-    "test": "NODE_ENV='test'; jest --silent; npm run lint;",
+    "test-dev": "NODE_ENV='test' && jest --watchAll --detectOpenHandles",
+    "test": "NODE_ENV='test'; jest --silent --detectOpenHandles; npm run lint;",
     "start": "NODE_ENV='production' node server.js"
   },
   "keywords": [
